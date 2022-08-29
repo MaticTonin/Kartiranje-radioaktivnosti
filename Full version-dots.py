@@ -177,7 +177,6 @@ def apply_graduated_symbology(layer,date):
     layer.setOpacity(0.75)
     current_node = iface.layerTreeView().currentNode()
     layers_save = created+"Layers\\" 
-    print(layers_save)
     if not os.path.exists(layers_save):
         os.makedirs(layers_save)        
     QgsLayerDefinition().exportLayerDefinition(layers_save+"Points "+layer.name()+" "+date+".qlr", [current_node])
