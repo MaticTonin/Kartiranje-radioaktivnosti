@@ -1,0 +1,1306 @@
+<!DOCTYPE qgis-layer-definition>
+<qlr>
+  <layer-tree-group checked="Qt::Checked" groupLayer="" name="" expanded="1">
+    <customproperties>
+      <Option/>
+    </customproperties>
+    <layer-tree-layer legend_split_behavior="0" providerKey="ogr" legend_exp="" checked="Qt::Checked" source="../../STAGE_data_prebivalstvo_500m/v165-2019-01-01Polygon.shp" id="v165_2019_01_01Polygon_5cc55e4e_be4a_4d2f_bd82_0fbdacc5dcdb" name="Prebivalstvo 500" patch_size="-1,-1" expanded="1">
+      <customproperties>
+        <Option/>
+      </customproperties>
+    </layer-tree-layer>
+  </layer-tree-group>
+  <maplayers>
+    <maplayer simplifyLocal="1" autoRefreshTime="0" simplifyDrawingHints="1" styleCategories="AllStyleCategories" autoRefreshEnabled="0" wkbType="MultiPolygon" maxScale="0" legendPlaceholderImage="" geometry="Polygon" simplifyDrawingTol="1" readOnly="0" labelsEnabled="0" refreshOnNotifyMessage="" symbologyReferenceScale="-1" simplifyAlgorithm="0" hasScaleBasedVisibilityFlag="0" type="vector" simplifyMaxScale="1" minScale="100000000" refreshOnNotifyEnabled="0">
+      <extent>
+        <xmin>377872.43293110292870551</xmin>
+        <ymin>30853.18347323685884476</ymin>
+        <xmax>617869.04644429357722402</xmax>
+        <ymax>193012.66328113339841366</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>13.39310762153382406</xmin>
+        <ymin>45.41127767866878173</ymin>
+        <xmax>16.5413885665837519</xmax>
+        <ymax>46.88100107176237685</ymax>
+      </wgs84extent>
+      <id>v165_2019_01_01Polygon_5cc55e4e_be4a_4d2f_bd82_0fbdacc5dcdb</id>
+      <datasource>../../STAGE_data_prebivalstvo_500m/v165-2019-01-01Polygon.shp</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>Prebivalstvo 500</layername>
+      <srs>
+        <spatialrefsys nativeFormat="Wkt">
+          <wkt>BOUNDCRS[SOURCECRS[PROJCRS["MGI 1901 / Slovene National Grid",BASEGEOGCRS["MGI 1901",DATUM["MGI 1901",ELLIPSOID["Bessel 1841",6377397.155,299.1528128,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]]],CONVERSION["unnamed",METHOD["Transverse Mercator",ID["EPSG",9807]],PARAMETER["Longitude of natural origin",15,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["Latitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Scale factor at natural origin",0.9999,SCALEUNIT["unity",1],ID["EPSG",8805]],PARAMETER["False easting",500000,LENGTHUNIT["m",1],ID["EPSG",8806]],PARAMETER["False northing",-5000000,LENGTHUNIT["m",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["geocentric Y",east,ORDER[1],LENGTHUNIT["m",1]],AXIS["x",north,ORDER[2],LENGTHUNIT["m",1]],ID["EPSG",3912]]],TARGETCRS[GEOGCRS["WGS 84",DATUM["World Geodetic System 1984",ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4326]]],ABRIDGEDTRANSFORMATION["Transformation from MGI 1901 to WGS84",METHOD["Position Vector transformation (geog2D domain)",ID["EPSG",9606]],PARAMETER["X-axis translation",409.545,ID["EPSG",8605]],PARAMETER["Y-axis translation",72.164,ID["EPSG",8606]],PARAMETER["Z-axis translation",486.872,ID["EPSG",8607]],PARAMETER["X-axis rotation",3.085957,ID["EPSG",8608]],PARAMETER["Y-axis rotation",5.46911,ID["EPSG",8609]],PARAMETER["Z-axis rotation",-11.020289,ID["EPSG",8610]],PARAMETER["Scale difference",1.000017919665,ID["EPSG",8611]]]]</wkt>
+          <proj4>+proj=tmerc +lat_0=0 +lon_0=15 +k=0.9999 +x_0=500000 +y_0=-5000000 +ellps=bessel +towgs84=409.545,72.164,486.872,3.085957,5.46911,-11.020289,17.9196650000879 +units=m +no_defs +type=crs</proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description>MGI 1901 / Slovene National Grid</description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym>PARAMETER:6377397.15500000026077032:6356078.96281818859279156</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type>dataset</type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys nativeFormat="Wkt">
+            <wkt></wkt>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider encoding="windows-1250">ogr</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <dataDependencies/>
+      <expressionfields/>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <auxiliaryLayer/>
+      <metadataUrls/>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+        <Private>0</Private>
+      </flags>
+      <temporal fixedDuration="0" limitMode="0" mode="0" endExpression="" endField="" durationField="" startExpression="" durationUnit="min" accumulate="0" enabled="0" startField="">
+        <fixedRange>
+          <start></start>
+          <end></end>
+        </fixedRange>
+      </temporal>
+      <elevation type="IndividualFeatures" extrusionEnabled="0" respectLayerSymbol="1" zoffset="0" binding="Centroid" clamping="Terrain" symbology="Line" showMarkerSymbolInSurfacePlots="0" zscale="1" extrusion="0">
+        <data-defined-properties>
+          <Option type="Map">
+            <Option type="QString" value="" name="name"/>
+            <Option name="properties"/>
+            <Option type="QString" value="collection" name="type"/>
+          </Option>
+        </data-defined-properties>
+        <profileLineSymbol>
+          <symbol type="line" frame_rate="10" is_animated="0" alpha="1" force_rhr="0" clip_to_extent="1" name="">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option type="QString" value="" name="name"/>
+                <Option name="properties"/>
+                <Option type="QString" value="collection" name="type"/>
+              </Option>
+            </data_defined_properties>
+            <layer locked="0" pass="0" class="SimpleLine" enabled="1">
+              <Option type="Map">
+                <Option type="QString" value="0" name="align_dash_pattern"/>
+                <Option type="QString" value="square" name="capstyle"/>
+                <Option type="QString" value="5;2" name="customdash"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="customdash_map_unit_scale"/>
+                <Option type="QString" value="MM" name="customdash_unit"/>
+                <Option type="QString" value="0" name="dash_pattern_offset"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="dash_pattern_offset_map_unit_scale"/>
+                <Option type="QString" value="MM" name="dash_pattern_offset_unit"/>
+                <Option type="QString" value="0" name="draw_inside_polygon"/>
+                <Option type="QString" value="bevel" name="joinstyle"/>
+                <Option type="QString" value="145,82,45,255" name="line_color"/>
+                <Option type="QString" value="solid" name="line_style"/>
+                <Option type="QString" value="0.6" name="line_width"/>
+                <Option type="QString" value="MM" name="line_width_unit"/>
+                <Option type="QString" value="0" name="offset"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="offset_map_unit_scale"/>
+                <Option type="QString" value="MM" name="offset_unit"/>
+                <Option type="QString" value="0" name="ring_filter"/>
+                <Option type="QString" value="0" name="trim_distance_end"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="trim_distance_end_map_unit_scale"/>
+                <Option type="QString" value="MM" name="trim_distance_end_unit"/>
+                <Option type="QString" value="0" name="trim_distance_start"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="trim_distance_start_map_unit_scale"/>
+                <Option type="QString" value="MM" name="trim_distance_start_unit"/>
+                <Option type="QString" value="0" name="tweak_dash_pattern_on_corners"/>
+                <Option type="QString" value="0" name="use_custom_dash"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="width_map_unit_scale"/>
+              </Option>
+              <prop k="align_dash_pattern" v="0"/>
+              <prop k="capstyle" v="square"/>
+              <prop k="customdash" v="5;2"/>
+              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="customdash_unit" v="MM"/>
+              <prop k="dash_pattern_offset" v="0"/>
+              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="dash_pattern_offset_unit" v="MM"/>
+              <prop k="draw_inside_polygon" v="0"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="line_color" v="145,82,45,255"/>
+              <prop k="line_style" v="solid"/>
+              <prop k="line_width" v="0.6"/>
+              <prop k="line_width_unit" v="MM"/>
+              <prop k="offset" v="0"/>
+              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="ring_filter" v="0"/>
+              <prop k="trim_distance_end" v="0"/>
+              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="trim_distance_end_unit" v="MM"/>
+              <prop k="trim_distance_start" v="0"/>
+              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="trim_distance_start_unit" v="MM"/>
+              <prop k="tweak_dash_pattern_on_corners" v="0"/>
+              <prop k="use_custom_dash" v="0"/>
+              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </profileLineSymbol>
+        <profileFillSymbol>
+          <symbol type="fill" frame_rate="10" is_animated="0" alpha="1" force_rhr="0" clip_to_extent="1" name="">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option type="QString" value="" name="name"/>
+                <Option name="properties"/>
+                <Option type="QString" value="collection" name="type"/>
+              </Option>
+            </data_defined_properties>
+            <layer locked="0" pass="0" class="SimpleFill" enabled="1">
+              <Option type="Map">
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale"/>
+                <Option type="QString" value="145,82,45,255" name="color"/>
+                <Option type="QString" value="bevel" name="joinstyle"/>
+                <Option type="QString" value="0,0" name="offset"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="offset_map_unit_scale"/>
+                <Option type="QString" value="MM" name="offset_unit"/>
+                <Option type="QString" value="104,59,32,255" name="outline_color"/>
+                <Option type="QString" value="solid" name="outline_style"/>
+                <Option type="QString" value="0.2" name="outline_width"/>
+                <Option type="QString" value="MM" name="outline_width_unit"/>
+                <Option type="QString" value="solid" name="style"/>
+              </Option>
+              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="color" v="145,82,45,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="104,59,32,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.2"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </profileFillSymbol>
+        <profileMarkerSymbol>
+          <symbol type="marker" frame_rate="10" is_animated="0" alpha="1" force_rhr="0" clip_to_extent="1" name="">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option type="QString" value="" name="name"/>
+                <Option name="properties"/>
+                <Option type="QString" value="collection" name="type"/>
+              </Option>
+            </data_defined_properties>
+            <layer locked="0" pass="0" class="SimpleMarker" enabled="1">
+              <Option type="Map">
+                <Option type="QString" value="0" name="angle"/>
+                <Option type="QString" value="square" name="cap_style"/>
+                <Option type="QString" value="145,82,45,255" name="color"/>
+                <Option type="QString" value="1" name="horizontal_anchor_point"/>
+                <Option type="QString" value="bevel" name="joinstyle"/>
+                <Option type="QString" value="diamond" name="name"/>
+                <Option type="QString" value="0,0" name="offset"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="offset_map_unit_scale"/>
+                <Option type="QString" value="MM" name="offset_unit"/>
+                <Option type="QString" value="104,59,32,255" name="outline_color"/>
+                <Option type="QString" value="solid" name="outline_style"/>
+                <Option type="QString" value="0.2" name="outline_width"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="outline_width_map_unit_scale"/>
+                <Option type="QString" value="MM" name="outline_width_unit"/>
+                <Option type="QString" value="diameter" name="scale_method"/>
+                <Option type="QString" value="3" name="size"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="size_map_unit_scale"/>
+                <Option type="QString" value="MM" name="size_unit"/>
+                <Option type="QString" value="1" name="vertical_anchor_point"/>
+              </Option>
+              <prop k="angle" v="0"/>
+              <prop k="cap_style" v="square"/>
+              <prop k="color" v="145,82,45,255"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="name" v="diamond"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="104,59,32,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.2"/>
+              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="diameter"/>
+              <prop k="size" v="3"/>
+              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </profileMarkerSymbol>
+      </elevation>
+      <renderer-v2 type="singleSymbol" symbollevels="0" forceraster="0" enableorderby="0" referencescale="-1">
+        <symbols>
+          <symbol type="fill" frame_rate="10" is_animated="0" alpha="1" force_rhr="0" clip_to_extent="1" name="0">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option type="QString" value="" name="name"/>
+                <Option name="properties"/>
+                <Option type="QString" value="collection" name="type"/>
+              </Option>
+            </data_defined_properties>
+            <layer locked="0" pass="0" class="SimpleFill" enabled="1">
+              <Option type="Map">
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale"/>
+                <Option type="QString" value="125,139,143,255" name="color"/>
+                <Option type="QString" value="bevel" name="joinstyle"/>
+                <Option type="QString" value="0,0" name="offset"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="offset_map_unit_scale"/>
+                <Option type="QString" value="MM" name="offset_unit"/>
+                <Option type="QString" value="35,35,35,255" name="outline_color"/>
+                <Option type="QString" value="solid" name="outline_style"/>
+                <Option type="QString" value="0.26" name="outline_width"/>
+                <Option type="QString" value="MM" name="outline_width_unit"/>
+                <Option type="QString" value="solid" name="style"/>
+              </Option>
+              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="color" v="125,139,143,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="35,35,35,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.26"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale/>
+      </renderer-v2>
+      <customproperties>
+        <Option/>
+      </customproperties>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerOpacity>1</layerOpacity>
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
+        <activeChecks type="StringList">
+          <Option type="QString" value=""/>
+        </activeChecks>
+        <checkConfiguration/>
+      </geometryOptions>
+      <legend type="default-vector" showLabelLegend="0"/>
+      <referencedLayers/>
+      <fieldConfiguration>
+        <field configurationFlags="None" name="ime_celice">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="ge_ime_cel">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="tot_p">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_00_14">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_00_14">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_15_64">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_65_">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_00_14">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_65_">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_15_64">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="tot_f">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="pct_p00_14">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="pct_m00_14">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="pct_m15_64">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="pct_m65_">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="pct_f00_14">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="pct_p65_">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="pct_p15_64">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_65_">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="ind_age_p">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="age_m">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="age_f">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="ind_fem">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="ind_age_m">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="ind_age_f">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="age_p">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="pct_f65_">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_00_04">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_05_09">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_10_14">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_25_29">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_30_34">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_35_39">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_40_44">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_45_49">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_50_54">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_55_59">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_20_24">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_70_74">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_75_79">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_80_84">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_85_">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_05_09">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_10_14">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_60_64">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_65_69">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_25_29">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_30_34">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_35_39">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_40_44">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_45_49">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_50_54">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_55_59">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_20_24">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_70_74">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_75_79">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_80_84">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_85_">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_05_09">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_10_14">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_60_64">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_65_69">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_25_29">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_30_34">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_35_39">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_40_44">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_45_49">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_50_54">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_55_59">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_20_24">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_75_79">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_80_84">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_60_64">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_65_69">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_85_">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="tot_m">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_15_64">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_00_04">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_00_04">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="p_15_19">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="m_15_19">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_15_19">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="f_70_74">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="None" name="pct_f15_64">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+      </fieldConfiguration>
+      <aliases>
+        <alias field="ime_celice" name="" index="0"/>
+        <alias field="ge_ime_cel" name="" index="1"/>
+        <alias field="tot_p" name="" index="2"/>
+        <alias field="p_00_14" name="" index="3"/>
+        <alias field="m_00_14" name="" index="4"/>
+        <alias field="m_15_64" name="" index="5"/>
+        <alias field="m_65_" name="" index="6"/>
+        <alias field="f_00_14" name="" index="7"/>
+        <alias field="p_65_" name="" index="8"/>
+        <alias field="p_15_64" name="" index="9"/>
+        <alias field="tot_f" name="" index="10"/>
+        <alias field="pct_p00_14" name="" index="11"/>
+        <alias field="pct_m00_14" name="" index="12"/>
+        <alias field="pct_m15_64" name="" index="13"/>
+        <alias field="pct_m65_" name="" index="14"/>
+        <alias field="pct_f00_14" name="" index="15"/>
+        <alias field="pct_p65_" name="" index="16"/>
+        <alias field="pct_p15_64" name="" index="17"/>
+        <alias field="f_65_" name="" index="18"/>
+        <alias field="ind_age_p" name="" index="19"/>
+        <alias field="age_m" name="" index="20"/>
+        <alias field="age_f" name="" index="21"/>
+        <alias field="ind_fem" name="" index="22"/>
+        <alias field="ind_age_m" name="" index="23"/>
+        <alias field="ind_age_f" name="" index="24"/>
+        <alias field="age_p" name="" index="25"/>
+        <alias field="pct_f65_" name="" index="26"/>
+        <alias field="p_00_04" name="" index="27"/>
+        <alias field="p_05_09" name="" index="28"/>
+        <alias field="p_10_14" name="" index="29"/>
+        <alias field="p_25_29" name="" index="30"/>
+        <alias field="p_30_34" name="" index="31"/>
+        <alias field="p_35_39" name="" index="32"/>
+        <alias field="p_40_44" name="" index="33"/>
+        <alias field="p_45_49" name="" index="34"/>
+        <alias field="p_50_54" name="" index="35"/>
+        <alias field="p_55_59" name="" index="36"/>
+        <alias field="p_20_24" name="" index="37"/>
+        <alias field="p_70_74" name="" index="38"/>
+        <alias field="p_75_79" name="" index="39"/>
+        <alias field="p_80_84" name="" index="40"/>
+        <alias field="p_85_" name="" index="41"/>
+        <alias field="m_05_09" name="" index="42"/>
+        <alias field="m_10_14" name="" index="43"/>
+        <alias field="p_60_64" name="" index="44"/>
+        <alias field="p_65_69" name="" index="45"/>
+        <alias field="m_25_29" name="" index="46"/>
+        <alias field="m_30_34" name="" index="47"/>
+        <alias field="m_35_39" name="" index="48"/>
+        <alias field="m_40_44" name="" index="49"/>
+        <alias field="m_45_49" name="" index="50"/>
+        <alias field="m_50_54" name="" index="51"/>
+        <alias field="m_55_59" name="" index="52"/>
+        <alias field="m_20_24" name="" index="53"/>
+        <alias field="m_70_74" name="" index="54"/>
+        <alias field="m_75_79" name="" index="55"/>
+        <alias field="m_80_84" name="" index="56"/>
+        <alias field="m_85_" name="" index="57"/>
+        <alias field="f_05_09" name="" index="58"/>
+        <alias field="f_10_14" name="" index="59"/>
+        <alias field="m_60_64" name="" index="60"/>
+        <alias field="m_65_69" name="" index="61"/>
+        <alias field="f_25_29" name="" index="62"/>
+        <alias field="f_30_34" name="" index="63"/>
+        <alias field="f_35_39" name="" index="64"/>
+        <alias field="f_40_44" name="" index="65"/>
+        <alias field="f_45_49" name="" index="66"/>
+        <alias field="f_50_54" name="" index="67"/>
+        <alias field="f_55_59" name="" index="68"/>
+        <alias field="f_20_24" name="" index="69"/>
+        <alias field="f_75_79" name="" index="70"/>
+        <alias field="f_80_84" name="" index="71"/>
+        <alias field="f_60_64" name="" index="72"/>
+        <alias field="f_65_69" name="" index="73"/>
+        <alias field="f_85_" name="" index="74"/>
+        <alias field="tot_m" name="" index="75"/>
+        <alias field="f_15_64" name="" index="76"/>
+        <alias field="m_00_04" name="" index="77"/>
+        <alias field="f_00_04" name="" index="78"/>
+        <alias field="p_15_19" name="" index="79"/>
+        <alias field="m_15_19" name="" index="80"/>
+        <alias field="f_15_19" name="" index="81"/>
+        <alias field="f_70_74" name="" index="82"/>
+        <alias field="pct_f15_64" name="" index="83"/>
+      </aliases>
+      <defaults>
+        <default field="ime_celice" expression="" applyOnUpdate="0"/>
+        <default field="ge_ime_cel" expression="" applyOnUpdate="0"/>
+        <default field="tot_p" expression="" applyOnUpdate="0"/>
+        <default field="p_00_14" expression="" applyOnUpdate="0"/>
+        <default field="m_00_14" expression="" applyOnUpdate="0"/>
+        <default field="m_15_64" expression="" applyOnUpdate="0"/>
+        <default field="m_65_" expression="" applyOnUpdate="0"/>
+        <default field="f_00_14" expression="" applyOnUpdate="0"/>
+        <default field="p_65_" expression="" applyOnUpdate="0"/>
+        <default field="p_15_64" expression="" applyOnUpdate="0"/>
+        <default field="tot_f" expression="" applyOnUpdate="0"/>
+        <default field="pct_p00_14" expression="" applyOnUpdate="0"/>
+        <default field="pct_m00_14" expression="" applyOnUpdate="0"/>
+        <default field="pct_m15_64" expression="" applyOnUpdate="0"/>
+        <default field="pct_m65_" expression="" applyOnUpdate="0"/>
+        <default field="pct_f00_14" expression="" applyOnUpdate="0"/>
+        <default field="pct_p65_" expression="" applyOnUpdate="0"/>
+        <default field="pct_p15_64" expression="" applyOnUpdate="0"/>
+        <default field="f_65_" expression="" applyOnUpdate="0"/>
+        <default field="ind_age_p" expression="" applyOnUpdate="0"/>
+        <default field="age_m" expression="" applyOnUpdate="0"/>
+        <default field="age_f" expression="" applyOnUpdate="0"/>
+        <default field="ind_fem" expression="" applyOnUpdate="0"/>
+        <default field="ind_age_m" expression="" applyOnUpdate="0"/>
+        <default field="ind_age_f" expression="" applyOnUpdate="0"/>
+        <default field="age_p" expression="" applyOnUpdate="0"/>
+        <default field="pct_f65_" expression="" applyOnUpdate="0"/>
+        <default field="p_00_04" expression="" applyOnUpdate="0"/>
+        <default field="p_05_09" expression="" applyOnUpdate="0"/>
+        <default field="p_10_14" expression="" applyOnUpdate="0"/>
+        <default field="p_25_29" expression="" applyOnUpdate="0"/>
+        <default field="p_30_34" expression="" applyOnUpdate="0"/>
+        <default field="p_35_39" expression="" applyOnUpdate="0"/>
+        <default field="p_40_44" expression="" applyOnUpdate="0"/>
+        <default field="p_45_49" expression="" applyOnUpdate="0"/>
+        <default field="p_50_54" expression="" applyOnUpdate="0"/>
+        <default field="p_55_59" expression="" applyOnUpdate="0"/>
+        <default field="p_20_24" expression="" applyOnUpdate="0"/>
+        <default field="p_70_74" expression="" applyOnUpdate="0"/>
+        <default field="p_75_79" expression="" applyOnUpdate="0"/>
+        <default field="p_80_84" expression="" applyOnUpdate="0"/>
+        <default field="p_85_" expression="" applyOnUpdate="0"/>
+        <default field="m_05_09" expression="" applyOnUpdate="0"/>
+        <default field="m_10_14" expression="" applyOnUpdate="0"/>
+        <default field="p_60_64" expression="" applyOnUpdate="0"/>
+        <default field="p_65_69" expression="" applyOnUpdate="0"/>
+        <default field="m_25_29" expression="" applyOnUpdate="0"/>
+        <default field="m_30_34" expression="" applyOnUpdate="0"/>
+        <default field="m_35_39" expression="" applyOnUpdate="0"/>
+        <default field="m_40_44" expression="" applyOnUpdate="0"/>
+        <default field="m_45_49" expression="" applyOnUpdate="0"/>
+        <default field="m_50_54" expression="" applyOnUpdate="0"/>
+        <default field="m_55_59" expression="" applyOnUpdate="0"/>
+        <default field="m_20_24" expression="" applyOnUpdate="0"/>
+        <default field="m_70_74" expression="" applyOnUpdate="0"/>
+        <default field="m_75_79" expression="" applyOnUpdate="0"/>
+        <default field="m_80_84" expression="" applyOnUpdate="0"/>
+        <default field="m_85_" expression="" applyOnUpdate="0"/>
+        <default field="f_05_09" expression="" applyOnUpdate="0"/>
+        <default field="f_10_14" expression="" applyOnUpdate="0"/>
+        <default field="m_60_64" expression="" applyOnUpdate="0"/>
+        <default field="m_65_69" expression="" applyOnUpdate="0"/>
+        <default field="f_25_29" expression="" applyOnUpdate="0"/>
+        <default field="f_30_34" expression="" applyOnUpdate="0"/>
+        <default field="f_35_39" expression="" applyOnUpdate="0"/>
+        <default field="f_40_44" expression="" applyOnUpdate="0"/>
+        <default field="f_45_49" expression="" applyOnUpdate="0"/>
+        <default field="f_50_54" expression="" applyOnUpdate="0"/>
+        <default field="f_55_59" expression="" applyOnUpdate="0"/>
+        <default field="f_20_24" expression="" applyOnUpdate="0"/>
+        <default field="f_75_79" expression="" applyOnUpdate="0"/>
+        <default field="f_80_84" expression="" applyOnUpdate="0"/>
+        <default field="f_60_64" expression="" applyOnUpdate="0"/>
+        <default field="f_65_69" expression="" applyOnUpdate="0"/>
+        <default field="f_85_" expression="" applyOnUpdate="0"/>
+        <default field="tot_m" expression="" applyOnUpdate="0"/>
+        <default field="f_15_64" expression="" applyOnUpdate="0"/>
+        <default field="m_00_04" expression="" applyOnUpdate="0"/>
+        <default field="f_00_04" expression="" applyOnUpdate="0"/>
+        <default field="p_15_19" expression="" applyOnUpdate="0"/>
+        <default field="m_15_19" expression="" applyOnUpdate="0"/>
+        <default field="f_15_19" expression="" applyOnUpdate="0"/>
+        <default field="f_70_74" expression="" applyOnUpdate="0"/>
+        <default field="pct_f15_64" expression="" applyOnUpdate="0"/>
+      </defaults>
+      <constraints>
+        <constraint exp_strength="0" field="ime_celice" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="ge_ime_cel" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="tot_p" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_00_14" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_00_14" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_15_64" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_65_" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_00_14" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_65_" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_15_64" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="tot_f" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="pct_p00_14" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="pct_m00_14" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="pct_m15_64" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="pct_m65_" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="pct_f00_14" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="pct_p65_" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="pct_p15_64" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_65_" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="ind_age_p" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="age_m" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="age_f" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="ind_fem" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="ind_age_m" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="ind_age_f" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="age_p" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="pct_f65_" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_00_04" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_05_09" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_10_14" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_25_29" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_30_34" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_35_39" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_40_44" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_45_49" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_50_54" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_55_59" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_20_24" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_70_74" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_75_79" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_80_84" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_85_" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_05_09" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_10_14" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_60_64" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_65_69" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_25_29" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_30_34" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_35_39" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_40_44" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_45_49" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_50_54" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_55_59" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_20_24" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_70_74" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_75_79" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_80_84" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_85_" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_05_09" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_10_14" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_60_64" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_65_69" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_25_29" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_30_34" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_35_39" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_40_44" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_45_49" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_50_54" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_55_59" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_20_24" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_75_79" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_80_84" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_60_64" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_65_69" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_85_" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="tot_m" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_15_64" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_00_04" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_00_04" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="p_15_19" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="m_15_19" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_15_19" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="f_70_74" unique_strength="0" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" field="pct_f15_64" unique_strength="0" constraints="0" notnull_strength="0"/>
+      </constraints>
+      <constraintExpressions>
+        <constraint field="ime_celice" exp="" desc=""/>
+        <constraint field="ge_ime_cel" exp="" desc=""/>
+        <constraint field="tot_p" exp="" desc=""/>
+        <constraint field="p_00_14" exp="" desc=""/>
+        <constraint field="m_00_14" exp="" desc=""/>
+        <constraint field="m_15_64" exp="" desc=""/>
+        <constraint field="m_65_" exp="" desc=""/>
+        <constraint field="f_00_14" exp="" desc=""/>
+        <constraint field="p_65_" exp="" desc=""/>
+        <constraint field="p_15_64" exp="" desc=""/>
+        <constraint field="tot_f" exp="" desc=""/>
+        <constraint field="pct_p00_14" exp="" desc=""/>
+        <constraint field="pct_m00_14" exp="" desc=""/>
+        <constraint field="pct_m15_64" exp="" desc=""/>
+        <constraint field="pct_m65_" exp="" desc=""/>
+        <constraint field="pct_f00_14" exp="" desc=""/>
+        <constraint field="pct_p65_" exp="" desc=""/>
+        <constraint field="pct_p15_64" exp="" desc=""/>
+        <constraint field="f_65_" exp="" desc=""/>
+        <constraint field="ind_age_p" exp="" desc=""/>
+        <constraint field="age_m" exp="" desc=""/>
+        <constraint field="age_f" exp="" desc=""/>
+        <constraint field="ind_fem" exp="" desc=""/>
+        <constraint field="ind_age_m" exp="" desc=""/>
+        <constraint field="ind_age_f" exp="" desc=""/>
+        <constraint field="age_p" exp="" desc=""/>
+        <constraint field="pct_f65_" exp="" desc=""/>
+        <constraint field="p_00_04" exp="" desc=""/>
+        <constraint field="p_05_09" exp="" desc=""/>
+        <constraint field="p_10_14" exp="" desc=""/>
+        <constraint field="p_25_29" exp="" desc=""/>
+        <constraint field="p_30_34" exp="" desc=""/>
+        <constraint field="p_35_39" exp="" desc=""/>
+        <constraint field="p_40_44" exp="" desc=""/>
+        <constraint field="p_45_49" exp="" desc=""/>
+        <constraint field="p_50_54" exp="" desc=""/>
+        <constraint field="p_55_59" exp="" desc=""/>
+        <constraint field="p_20_24" exp="" desc=""/>
+        <constraint field="p_70_74" exp="" desc=""/>
+        <constraint field="p_75_79" exp="" desc=""/>
+        <constraint field="p_80_84" exp="" desc=""/>
+        <constraint field="p_85_" exp="" desc=""/>
+        <constraint field="m_05_09" exp="" desc=""/>
+        <constraint field="m_10_14" exp="" desc=""/>
+        <constraint field="p_60_64" exp="" desc=""/>
+        <constraint field="p_65_69" exp="" desc=""/>
+        <constraint field="m_25_29" exp="" desc=""/>
+        <constraint field="m_30_34" exp="" desc=""/>
+        <constraint field="m_35_39" exp="" desc=""/>
+        <constraint field="m_40_44" exp="" desc=""/>
+        <constraint field="m_45_49" exp="" desc=""/>
+        <constraint field="m_50_54" exp="" desc=""/>
+        <constraint field="m_55_59" exp="" desc=""/>
+        <constraint field="m_20_24" exp="" desc=""/>
+        <constraint field="m_70_74" exp="" desc=""/>
+        <constraint field="m_75_79" exp="" desc=""/>
+        <constraint field="m_80_84" exp="" desc=""/>
+        <constraint field="m_85_" exp="" desc=""/>
+        <constraint field="f_05_09" exp="" desc=""/>
+        <constraint field="f_10_14" exp="" desc=""/>
+        <constraint field="m_60_64" exp="" desc=""/>
+        <constraint field="m_65_69" exp="" desc=""/>
+        <constraint field="f_25_29" exp="" desc=""/>
+        <constraint field="f_30_34" exp="" desc=""/>
+        <constraint field="f_35_39" exp="" desc=""/>
+        <constraint field="f_40_44" exp="" desc=""/>
+        <constraint field="f_45_49" exp="" desc=""/>
+        <constraint field="f_50_54" exp="" desc=""/>
+        <constraint field="f_55_59" exp="" desc=""/>
+        <constraint field="f_20_24" exp="" desc=""/>
+        <constraint field="f_75_79" exp="" desc=""/>
+        <constraint field="f_80_84" exp="" desc=""/>
+        <constraint field="f_60_64" exp="" desc=""/>
+        <constraint field="f_65_69" exp="" desc=""/>
+        <constraint field="f_85_" exp="" desc=""/>
+        <constraint field="tot_m" exp="" desc=""/>
+        <constraint field="f_15_64" exp="" desc=""/>
+        <constraint field="m_00_04" exp="" desc=""/>
+        <constraint field="f_00_04" exp="" desc=""/>
+        <constraint field="p_15_19" exp="" desc=""/>
+        <constraint field="m_15_19" exp="" desc=""/>
+        <constraint field="f_15_19" exp="" desc=""/>
+        <constraint field="f_70_74" exp="" desc=""/>
+        <constraint field="pct_f15_64" exp="" desc=""/>
+      </constraintExpressions>
+      <expressionfields/>
+      <attributeactions>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
+      </attributeactions>
+      <attributetableconfig sortOrder="0" sortExpression="" actionWidgetStyle="dropDown">
+        <columns/>
+      </attributetableconfig>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <storedexpressions/>
+      <editform tolerant="1"></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <editable/>
+      <labelOnTop/>
+      <reuseLastValue/>
+      <dataDefinedFieldProperties/>
+      <widgets/>
+      <previewExpression></previewExpression>
+      <mapTip></mapTip>
+    </maplayer>
+  </maplayers>
+</qlr>
