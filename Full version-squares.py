@@ -1,3 +1,13 @@
+from osgeo import gdal
+import qgis
+import os
+import numpy as np
+import matplotlib.cm as cm
+import matplotlib.pyplot as plt
+from mycolorpy import colorlist as mcp
+
+import os
+import pandas as pd
 class InputDialog_DATA(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -371,10 +381,19 @@ scalebar.setFont(QFont('Arial', 14))
 scalebar.update()
 layout.addLayoutItem(scalebar)
 scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
+
+layoutItemPicture = QgsLayoutItemPicture(layout)
+layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
+layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
+layoutItemPicture.setPicturePath(THIS_FOLDER+"\Layers\logo.jpg")
+
+dim_image_original = [1186, 360]
+new_dim = [i * 0.70 for i in dim_image_original]
+layoutItemPicture.attemptMove(QgsLayoutPoint(10, 180, QgsUnitTypes.LayoutMillimeters))
+layoutItemPicture.attemptResize(QgsLayoutSize(*new_dim, QgsUnitTypes.LayoutPixels))
+layout.addLayoutItem(layoutItemPicture)
+
 layout = manager.layoutByName("Zemljevid Slovenije")
 exporter = QgsLayoutExporter(layout)
-exporter.exportToPdf(save+"Slovenia"+date+".pdf", QgsLayoutExporter.PdfExportSettings())
-exporter.exportToImage(save+"Slovenia"+date+".png", QgsLayoutExporter.ImageExportSettings())
-
-
-
+exporter.exportToPdf(saving_folder+"Slovenia"+date+".pdf", QgsLayoutExporter.PdfExportSettings())
+exporter.exportToImage(saving_folder+"Slovenia"+date+".png", QgsLayoutExporter.ImageExportSettings())

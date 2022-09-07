@@ -173,7 +173,7 @@ def Zones_window():
         print("Selected Zones with 500m population")
         THIS_FOLDER = os.path.dirname(os.path.abspath("__file__"))
         print(THIS_FOLDER)
-        layer_list = QgsLayerDefinition().loadLayerDefinitionLayers(THIS_FOLDER+"\Layers\Pet.qlr")
+        layer_list = QgsLayerDefinition().loadLayerDefinitionLayers(THIS_FOLDER+"\Layers\Zone with 500.qlr")
         QgsProject.instance().addMapLayers(layer_list)
 
 
@@ -378,7 +378,7 @@ def grid(data,layers,date):
         layer= QgsProject.instance().addMapLayer(layer)
         apply_graduated_symbology(layer,data,layers,date)
     Creating_layer("XL "+date+".csv",data,layers,date)    
-    Creating_layer("L "+date+".csv",data,layers,date)
+    #Creating_layer("L "+date+".csv",data,layers,date)
     rmvLyr("Regije")
 def squares(data, layers, date):
     column_index=3
@@ -627,6 +627,16 @@ if item=="Slovenia map":
     scalebar.update()
     layout.addLayoutItem(scalebar)
     scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
+    layoutItemPicture = QgsLayoutItemPicture(layout)
+    layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
+    layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
+    layoutItemPicture.setPicturePath("C:\IJS\Obdelava\Final\Kartiranje-radioaktivnosti\Layers\logo.jpg")
+
+    dim_image_original = [1186, 360]
+    new_dim = [i * 0.70 for i in dim_image_original]
+    layoutItemPicture.attemptMove(QgsLayoutPoint(10, 180, QgsUnitTypes.LayoutMillimeters))
+    layoutItemPicture.attemptResize(QgsLayoutSize(*new_dim, QgsUnitTypes.LayoutPixels))
+    layout.addLayoutItem(layoutItemPicture)
     qid = QDialog()
     items = ("No", "Pdf", "png", "Both")        
     item, ok = QInputDialog.getItem(qid, "Prikaz", "Export layouts as:", items, 0, False)
@@ -702,6 +712,16 @@ if item=="Krško map":
     scalebar.update()
     layout.addLayoutItem(scalebar)
     scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
+    layoutItemPicture = QgsLayoutItemPicture(layout)
+    layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
+    layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
+    layoutItemPicture.setPicturePath("C:\IJS\Obdelava\Final\Kartiranje-radioaktivnosti\Layers\logo.jpg")
+
+    dim_image_original = [1186, 360]
+    new_dim = [i * 0.70 for i in dim_image_original]
+    layoutItemPicture.attemptMove(QgsLayoutPoint(10, 180, QgsUnitTypes.LayoutMillimeters))
+    layoutItemPicture.attemptResize(QgsLayoutSize(*new_dim, QgsUnitTypes.LayoutPixels))
+    layout.addLayoutItem(layoutItemPicture)
     qid = QDialog()
     items = ("No", "Pdf", "png", "Both")        
     item, ok = QInputDialog.getItem(qid, "Prikaz", "Export layouts as:", items, 0, False)
@@ -777,7 +797,17 @@ if item=="Both":
     scalebar.update()
     layout.addLayoutItem(scalebar)
     scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
+    
+    layoutItemPicture = QgsLayoutItemPicture(layout)
+    layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
+    layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
+    layoutItemPicture.setPicturePath("C:\IJS\Obdelava\Final\Kartiranje-radioaktivnosti\Layers\logo.jpg")
 
+    dim_image_original = [1186, 360]
+    new_dim = [i * 0.70 for i in dim_image_original]
+    layoutItemPicture.attemptMove(QgsLayoutPoint(10, 180, QgsUnitTypes.LayoutMillimeters))
+    layoutItemPicture.attemptResize(QgsLayoutSize(*new_dim, QgsUnitTypes.LayoutPixels))
+    layout.addLayoutItem(layoutItemPicture)
         
     #KRŠKO MAP
     from qgis.PyQt import QtGui
@@ -834,6 +864,17 @@ if item=="Both":
     scalebar.update()
     layout.addLayoutItem(scalebar)
     scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
+    
+    layoutItemPicture = QgsLayoutItemPicture(layout)
+    layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
+    layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
+    layoutItemPicture.setPicturePath("C:\IJS\Obdelava\Final\Kartiranje-radioaktivnosti\Layers\logo.jpg")
+
+    dim_image_original = [1186, 360]
+    new_dim = [i * 0.70 for i in dim_image_original]
+    layoutItemPicture.attemptMove(QgsLayoutPoint(10, 180, QgsUnitTypes.LayoutMillimeters))
+    layoutItemPicture.attemptResize(QgsLayoutSize(*new_dim, QgsUnitTypes.LayoutPixels))
+    layout.addLayoutItem(layoutItemPicture)
     qid = QDialog()
     items = ("No", "Pdf", "png", "Both")        
     item, ok = QInputDialog.getItem(qid, "Prikaz", "Export layouts as:", items, 0, False)

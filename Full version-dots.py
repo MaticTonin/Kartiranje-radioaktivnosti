@@ -208,7 +208,6 @@ Creating_layer("L ",date)
 Creating_layer("XL ",date)
 
 from qgis.PyQt import QtGui
-
 #layers = QgsProject.instance().mapLayersByName('MrežaXL')
 layers = QgsProject.instance().mapLayersByName('Radioactivity Dose')
 layer = layers[0]
@@ -263,7 +262,18 @@ scalebar.setFont(QFont('Arial', 14))
 scalebar.update()
 layout.addLayoutItem(scalebar)
 scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
+
+layoutItemPicture = QgsLayoutItemPicture(layout)
+layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
+layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
+layoutItemPicture.setPicturePath(THIS_FOLDER+"\Layers\logo.jpg")
+
+dim_image_original = [1186, 360]
+new_dim = [i * 0.70 for i in dim_image_original]
+layoutItemPicture.attemptMove(QgsLayoutPoint(10, 180, QgsUnitTypes.LayoutMillimeters))
+layoutItemPicture.attemptResize(QgsLayoutSize(*new_dim, QgsUnitTypes.LayoutPixels))
+layout.addLayoutItem(layoutItemPicture)
 layout = manager.layoutByName("Zemljevid Slovenije")
 exporter = QgsLayoutExporter(layout)
-exporter.exportToPdf(save+"Slovenia"+date+".pdf", QgsLayoutExporter.PdfExportSettings())
-exporter.exportToImage(save+"Slovenia"+date+".png", QgsLayoutExporter.ImageExportSettings())
+exporter.exportToPdf(saving_folder+"Slovenia "+date+".pdf", QgsLayoutExporter.PdfExportSettings())
+exporter.exportToImage(saving_folder+"Slovenia "+date+".png", QgsLayoutExporter.ImageExportSettings())
