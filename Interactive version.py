@@ -378,7 +378,7 @@ def grid(data,layers,date):
         layer= QgsProject.instance().addMapLayer(layer)
         apply_graduated_symbology(layer,data,layers,date)
     Creating_layer("XL "+date+".csv",data,layers,date)    
-    #Creating_layer("L "+date+".csv",data,layers,date)
+    Creating_layer("L "+date+".csv",data,layers,date)
     rmvLyr("Regije")
 def squares(data, layers, date):
     column_index=3
@@ -914,3 +914,4 @@ if item=="Both":
         exporter.exportToImage(save+"Slovenia"+date+".png", QgsLayoutExporter.ImageExportSettings())
     #exporter.exportToImage('/Users/ep9k/Desktop/TestLayout.png', QgsLayoutExporter.ImageExportSettings())
 
+print("Done with program")

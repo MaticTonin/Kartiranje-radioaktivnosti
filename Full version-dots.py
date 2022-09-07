@@ -33,7 +33,10 @@ if folders.exec():
     else:
         data_folder=FILES[0]+"\\"
     if FILES[1]=='':
-        saving_folder=THIS_FOLDER+"\\"
+        saving_folder = THIS_FOLDER+"\\Output\\"
+        if not os.path.exists(saving_folder):
+            os.makedirs(saving_folder)
+        saving_folder=THIS_FOLDER+"\\Output\\"
     else:
         saving_folder=FILES[1]+"\\"
 print("Selected paths: Datafile:"+ data_folder+ "\nFile for created PDF,png,SVG:"+saving_folder)
