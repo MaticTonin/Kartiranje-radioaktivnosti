@@ -167,7 +167,7 @@ def Zones_window():
         QgsProject.instance().addMapLayers(layer_list)
     if item=="Zones with 100m population":
         THIS_FOLDER = os.path.dirname(os.path.abspath("__file__"))
-        layer_list = QgsLayerDefinition().loadLayerDefinitionLayers(THIS_FOLDER+"\Layers\All Zones.qlr")
+        layer_list = QgsLayerDefinition().loadLayerDefinitionLayers(THIS_FOLDER+"\Layers\Zone with 100.qlr")
         QgsProject.instance().addMapLayers(layer_list)
     if item=="Zones with 500m population":
         print("Selected Zones with 500m population")
@@ -180,7 +180,7 @@ def Zones_window():
 
 #Window for choosing which one  
 qid = QDialog()
-items = ("Circles", "Squares", "Polygons")        
+items = ("Circles", "Squares", "Polygons", "None")        
 item, ok = QInputDialog.getItem(qid, "Showing data on map", "Show data as:", items, 0, False)
 #
 #Layers functions
@@ -561,6 +561,14 @@ if ok and item:
         created=dataSets(date,data_folder,created_layers)
         grid(created,created_layers,date)
         #Window for choosing the layer of population
+    if item=="None":
+        print("Selected: None")
+        urlWithParams = 'type=xyz&url=https://a.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0&crs=EPSG3857'
+        rlayer = QgsRasterLayer(urlWithParams, 'OpenStreetMap', 'wms')  
+        if rlayer.isValid():
+            QgsProject.instance().addMapLayer(rlayer)
+        else:
+            print('invalid layer')
 Zones_window()
 #
 #Save window
