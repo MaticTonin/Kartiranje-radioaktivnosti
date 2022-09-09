@@ -8,6 +8,12 @@ from mycolorpy import colorlist as mcp
 
 import os
 import pandas as pd
+
+from PyQt5.QtWidgets import QInputDialog, QLineEdit, QDialog, QApplication, QDialogButtonBox, QFormLayout
+#DODAJ VSEM
+from PyQt5.QtGui import QColor, QFont
+from qgis.utils import iface
+
 class InputDialog_DATA(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -146,6 +152,7 @@ import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 from mycolorpy import colorlist as mcp
 cm = plt.cm.Reds
+from processing.core.Processing import processing
 
 import os
 import pandas as pd
@@ -164,94 +171,49 @@ def rmvLyr(lyrname):
 
 column_index=3
 
-layer_list = QgsLayerDefinition().loadLayerDefinitionLayers(THIS_FOLDER+'/Layers/Regije.qlr')
-QgsProject.instance().addMapLayers(layer_list)
-def creating_grid(name):
-    crs = QgsProject().instance().crs().toWkt() # it is EPSG:3857 
-    out1 = processing.run('native:creategrid', params_grid)
-    grid = QgsVectorLayer(out1['OUTPUT'], 'Mreža XL', 'ogr')
-    QgsProject().instance().addMapLayer(grid)
-
-def Creating_layer(file,date):
-    uri="file:///"+created+file+date+".csv"+"?type=regexp&delimiter=;&maxFields=10000&detectTypes=yes&decimalPoint=,&xField=E%20[Decimal%20degrees]&yField=N%20[Decimal%20degrees]&crs=EPSG:4326&spatialIndex=no&subsetIndex=no&watchFile=no"
-    layer = QgsVectorLayer(uri, file, 'delimitedtext')
-    params_grid={}
-    layer= QgsProject.instance().addMapLayer(layer)
-    crs = QgsProject().instance().crs().toWkt() # it is EPSG:3857
-    if layer.name()=="XS ":
-        params_grid= {'TYPE':3,
-          'EXTENT':'Regije',
-          'HSPACING':0.001,
-          'VSPACING':0.001,
-          'HOVERLAY':0,
-          'VOVERLAY':0,
-          'CRS':crs,
-          'OUTPUT':layers_save+"output"+layer.name()+" "+date}
-    if layer.name()=="S ":
-        params_grid= {'TYPE':3,
-          'EXTENT':'Regije',
-          'HSPACING':0.001,
-          'VSPACING':0.001,
-          'HOVERLAY':0,
-          'VOVERLAY':0,
-          'CRS':crs,
-          'OUTPUT':layers_save+"output"+layer.name()+" "+date}
-    if layer.name()=="L ":
-        params_grid= {'TYPE':3,
-          'EXTENT':'Regije',
-          'HSPACING':0.01,
-          'VSPACING':0.01,
-          'HOVERLAY':0,
-          'VOVERLAY':0,
-          'CRS':crs,
-          'OUTPUT':layers_save+"output"+layer.name()+" "+date}
-    if layer.name()=="XL ":
-        params_grid= {'TYPE':3,
-          'EXTENT':'Regije',
-          'HSPACING':0.1,
-          'VSPACING':0.1,
-          'HOVERLAY':0,
-          'VOVERLAY':0,
-          'CRS':crs,
-          'OUTPUT':layers_save+"output"+layer.name()+" "+date}
-    crs = QgsProject().instance().crs().toWkt()
-    out1 = processing.run('native:creategrid', params_grid)
-    grid = QgsVectorLayer(out1['OUTPUT'], 'Grid'+layer.name(), 'ogr')
-    print("Printing grid")
-    QgsProject().instance().addMapLayer(grid)
-    params= {"POLYGONS": "Grid"+layer.name(),
-            "POINTS": layer.name(),
-            "WEIGHT": 'D [μSv/h]',
-            "FIELD": 'D [μSv/h]',
-            "OUTPUT": layers_save+"Mreža"+layer.name()+" "+date}
-            
-    out1=processing.run('qgis:countpointsinpolygon', params)
-    grid = QgsVectorLayer(out1['OUTPUT'], "Mreža"+layer.name(), 'ogr')
-    for lyr in ["Grid"+layer.name(),layer.name()]:
-        rmvLyr(lyr)
-    grid.setScaleBasedVisibility(True)
-    if grid.name()=="Mreža"+"XS ":
-        grid.setMinimumScale(50000.0)
-        grid.setMaximumScale(20.0)
-    if grid.name()=="Mreža"+"S ":
-        grid.setMinimumScale(50000.0)
-        grid.setMaximumScale(1000.0)
-    if grid.name()=="Mreža"+"L ":
-        grid.setMinimumScale(200000.0)
-        grid.setMaximumScale(25000.0)
-    if grid.name()=="Mreža"+"XL ":
-        grid.setMinimumScale(11000000.0)
-        grid.setMaximumScale(200000.0)
-        print("is working")
-    QgsProject().instance().addMapLayer(grid)
-    apply_graduated_symbology(grid, date)
+#PRINTING STREET MAP
     
-def apply_graduated_symbology(layer,date):
+
+#QgsLayerDefinition.loadLayerDefinition(THIS_FOLDER+'Layer 500.qlr',QgsProject.instance(), QgsProject.instance().QgsLayerTreeGroup())
+#layer_list = QgsLayerDefinition().loadLayerDefinitionLayers(THIS_FOLDER+'/Layers/Layer 500 opacity.qlr')
+#QgsProject.instance().addMapLayers(layer_list)
+
+#
+#FUNCTION FOR COLORING DOTS
+#
+def apply_graduated_symbology_points(layer,border,color1):
+    """Creates Symbology for each value in range of values. 
+        Vir:https://data.library.virginia.edu/how-to-apply-a-graduated-color-symbology-to-a-layer-using-python-for-qgis-3/"""
     target_field = 'D [μSv/h]'
+    def Group(index, min, max,layer):
+        symbol = QgsSymbol.defaultSymbol(layer.geometryType())
+        symbol.setColor(QColor(str(color1[index])))
+        myRange = QgsRendererRange(min, max, symbol, str(min)+"-"+str(max)+" μSv/h")
+        return myRange
+        
+    myRangeList = []
+    for i in range(0,column_index):
+        myRange=Group(i,border[i], border[i+1],layer)
+        myRangeList.append(myRange) 
+
+    myRenderer = QgsGraduatedSymbolRenderer(target_field, myRangeList)  
+    myRenderer.setMode(QgsGraduatedSymbolRenderer.Custom)
+    ramp = QgsCptCityColorRamp("wkp/precip/wiki-precip-mm","",False,True)
+    myRenderer.updateColorRamp(ramp)    
+    layer.setRenderer(myRenderer)
+    layer.setName("Doza radioaktivnosti")
+    current_node = iface.layerTreeView().currentNode()
+    QgsLayerDefinition().exportLayerDefinition(THIS_FOLDER+"/Created_layers/Points "+layer.name()+".qlr", [current_node])    
+    print(f"Graduated color scheme applied")
+#
+#FUNCTION FOR COLORING SQUARES
+#
+def apply_graduated_symbology(layer,date):
+    target_field = 'D [ÎĽSv/h]'
     myRenderer  = QgsGraduatedSymbolRenderer()
     myRenderer.setClassAttribute(target_field)
     color1=mcp.gen_color(cmap="autumn",n=column_index)
-    border=[0.01,0.5,100,1000]
+    border=[0,0.5,100,1000]
     def Group(index, min, max,layer):
         symbol = QgsSymbol.defaultSymbol(layer.geometryType())
         symbol.setColor(QColor(str(color1[index])))
@@ -270,50 +232,115 @@ def apply_graduated_symbology(layer,date):
     layer.setRenderer(myRenderer)
     layer.setOpacity(0.75)
     current_node = iface.layerTreeView().currentNode()
-    layers_save = created+"Layers\\" 
-    if not os.path.exists(layers_save):
-        os.makedirs(layers_save)        
-    QgsLayerDefinition().exportLayerDefinition(layers_save+"Points "+layer.name()+" "+date+".qlr", [current_node])
+    QgsLayerDefinition().exportLayerDefinition(layers_save+"Squares "+layer.name()+" "+date+".qlr", [current_node])
     layer.setName("Radioactivity Dose")
-    layer.setBlendMode(QPainter.CompositionMode_Darken)
-    layer.setFeatureBlendMode(QPainter.CompositionMode_ColorDodge)    
+    #layer.setBlendMode(QPainter.CompositionMode_Normal)
+    #layer.setFeatureBlendMode(QPainter.CompositionMode_Normal)
+#
+#FUNCTION FOR CREATING SQUARES
+#
+def Creating_map(layer,date):
+    #Getting the data max in min for labels
+    target_field = 'D [μSv/h]'
+    max=0
+    min=0
+    for feature in layer.getFeatures():
+        number = feature['D [μSv/h]']
+        if number >max:
+            max=number
+        if number < min:
+            min=number
 
-def Creating_layer_dots(file,date):
+    #Creating colored groups
+    column_index=5
+    color1=mcp.gen_color(cmap="autumn",n=column_index)
+    border=np.linspace(min,max,column_index+1)
+    #apply_graduated_symbology_points(layer,border,color1)
+    print(layers_save+"output"+layer.name()+".shp")
+    if layer.name()=="XS ":
+        params = {
+            "INPUT": layer,
+            "DISTANCE": 0.0005,
+            "SEGMENTS": 4,
+            "END_CAP_STYLE": 2,
+            "OUTPUT": layers_save+"output"+layer.name()+" "+date+".shp"}
+    if layer.name()=="S ":
+        params = {
+            "INPUT": layer,
+            "DISTANCE": 0.005,
+            "SEGMENTS": 4,
+            "END_CAP_STYLE": 2,
+            "OUTPUT": layers_save+"output"+layer.name()+" "+date+".shp"}
+    if layer.name()=="L ":
+        params = {
+            "INPUT": layer,
+            "DISTANCE": 0.005,
+            "SEGMENTS": 4,
+            "END_CAP_STYLE": 2,
+            "OUTPUT": layers_save+"output"+layer.name()+" "+date+".shp"}
+    if layer.name()=="XL ":
+        params = {
+            "INPUT": layer,
+            "DISTANCE": 0.05,
+            "SEGMENTS": 4,
+            "END_CAP_STYLE": 2,
+            "OUTPUT": layers_save+"output"+layer.name()+" "+date+".shp"}
+    out1=processing.run("native:buffer", params)
+    grid = QgsVectorLayer(out1['OUTPUT'], "Buffed"+layer.name(), 'ogr')
+    QgsProject().instance().addMapLayer(grid)
+    grid.setScaleBasedVisibility(True)
+    if "Buffed"+layer.name()=="BuffedXS ":
+        grid.setMinimumScale(25000.0)
+        grid.setMaximumScale(20.0)
+    #if "Buffed"+layer.name()=="BuffedS":
+        #grid.setMinimumScale(25000.0)
+        #grid.setMaximumScale(1000.0)
+    if "Buffed"+layer.name()=="BuffedL ":
+        grid.setMinimumScale(200000.0)
+        grid.setMaximumScale(25000.0)
+    if "Buffed"+layer.name()=="BuffedXL ":
+        grid.setMinimumScale(11000000.0)
+        grid.setMaximumScale(200000.0)
+    #QgsGeometryAnalyzer().buffer(layer, THIS_FOLDER+"output.shp", 0.05, False, False, -1)
+    rmvLyr(layer.name())
+    apply_graduated_symbology(grid,date)
+#
+#FUNCTION FOR CREATING LAYER
+#
+def Creating_layer(file,date):
     uri="file:///"+created+file+date+".csv"+"?type=regexp&delimiter=;&maxFields=10000&detectTypes=yes&decimalPoint=,&xField=E%20[Decimal%20degrees]&yField=N%20[Decimal%20degrees]&crs=EPSG:4326&spatialIndex=no&subsetIndex=no&watchFile=no"
     layer = QgsVectorLayer(uri, file, 'delimitedtext')
     layer.setScaleBasedVisibility(True)
     if file[0:2]=="XS":
         layer.setMinimumScale(25000.0)
-        layer.setMaximumScale(10.0)
+        layer.setMaximumScale(20.0)
+    #if layer.name()=="S":
+        #layer.setMinimumScale(25000.0)
+        #layer.setMaximumScale(10000.0)
     if file[0:1]=="L":
-        layer.setMinimumScale(400000.0)
-        layer.setMaximumScale(200000.0)
+        layer.setMinimumScale(200000.0)
+        layer.setMaximumScale(25000.0)
     if file[0:2]=="XL":
         layer.setMinimumScale(11000000.0)
-        layer.setMaximumScale(400000.0)
+        layer.setMaximumScale(200000.0)
     layer= QgsProject.instance().addMapLayer(layer)
-    apply_graduated_symbology(layer,date)
-    
-    
-  
-#Creating_layer("L.csv")
-
-
+    Creating_map(layer,date)
 
 layers_save = created+"Layers\\" 
 if not os.path.exists(layers_save):
     os.makedirs(layers_save)        
-Creating_layer_dots("XS ",date)
+Creating_layer("XS ",date)
 #Creating_layer("S.csv")
-#Creating_layer("L ",date)
+Creating_layer("L ",date)
 Creating_layer("XL ",date)
-rmvLyr("Regije")
+
 
 from qgis.PyQt import QtGui
 
 #layers = QgsProject.instance().mapLayersByName('MrežaXL')
 layers = QgsProject.instance().mapLayersByName('Radioactivity Dose')
 layer = layers[0]
+
 project = QgsProject.instance()
 manager = project.layoutManager()
 layoutName = 'Zemljevid Slovenije'
@@ -363,8 +390,8 @@ scalebar.setUnitLabel('km')
 scalebar.setFont(QFont('Arial', 14))
 scalebar.update()
 layout.addLayoutItem(scalebar)
-
 scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
+
 layoutItemPicture = QgsLayoutItemPicture(layout)
 layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
 layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
@@ -380,5 +407,3 @@ layout = manager.layoutByName("Zemljevid Slovenije")
 exporter = QgsLayoutExporter(layout)
 exporter.exportToPdf(saving_folder+"Slovenia"+date+".pdf", QgsLayoutExporter.PdfExportSettings())
 exporter.exportToImage(saving_folder+"Slovenia"+date+".png", QgsLayoutExporter.ImageExportSettings())
-
-    

@@ -11,6 +11,13 @@ import os
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 from mycolorpy import colorlist as mcp
+
+#DODAJ VSEM
+from PyQt5.QtWidgets import QInputDialog, QLineEdit, QDialog, QApplication, QDialogButtonBox, QFormLayout
+from processing.core.Processing import processing
+from PyQt5.QtGui import QColor, QFont,QPainter
+from qgis.utils import iface
+
 cm = plt.cm.Reds
 def rmvLyr(lyrname):
     qinst = QgsProject.instance()

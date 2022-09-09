@@ -1,7 +1,17 @@
-#
-#IZDELAVA DATOTEK ZA DELO
-# 
-import numpy as np 
+from osgeo import gdal
+import qgis
+import os
+import numpy as np
+import matplotlib.cm as cm
+import matplotlib.pyplot as plt
+from mycolorpy import colorlist as mcp
+
+#DODAJ VSEM
+from PyQt5.QtWidgets import QInputDialog, QLineEdit, QDialog, QApplication, QDialogButtonBox, QFormLayout
+from processing.core.Processing import processing
+from PyQt5.QtGui import QColor, QFont,QPainter
+from qgis.utils import iface
+
 import os
 import pandas as pd
 class InputDialog_DATA(QDialog):
@@ -142,7 +152,7 @@ import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 from mycolorpy import colorlist as mcp
 cm = plt.cm.Reds
-
+from processing.core.Processing import processing
 import os
 import pandas as pd
 
@@ -154,13 +164,100 @@ if rlayer.isValid():
     QgsProject.instance().addMapLayer(rlayer)
 else:
     print('invalid layer')
+def rmvLyr(lyrname):
+    qinst = QgsProject.instance()
+    qinst.removeMapLayer(qinst.mapLayersByName(lyrname)[0].id())
+
+column_index=3
+
+layer_list = QgsLayerDefinition().loadLayerDefinitionLayers(THIS_FOLDER+'/Layers/Regije.qlr')
+QgsProject.instance().addMapLayers(layer_list)
+def creating_grid(name):
+    crs = QgsProject().instance().crs().toWkt() # it is EPSG:3857 
+    out1 = processing.run('native:creategrid', params_grid)
+    grid = QgsVectorLayer(out1['OUTPUT'], 'Mreža XL', 'ogr')
+    QgsProject().instance().addMapLayer(grid)
+
+def Creating_layer(file,date):
+    uri="file:///"+created+file+date+".csv"+"?type=regexp&delimiter=;&maxFields=10000&detectTypes=yes&decimalPoint=,&xField=E%20[Decimal%20degrees]&yField=N%20[Decimal%20degrees]&crs=EPSG:4326&spatialIndex=no&subsetIndex=no&watchFile=no"
+    layer = QgsVectorLayer(uri, file, 'delimitedtext')
+    params_grid={}
+    layer= QgsProject.instance().addMapLayer(layer)
+    crs = QgsProject().instance().crs().toWkt() # it is EPSG:3857
+    if layer.name()=="XS ":
+        params_grid= {'TYPE':3,
+          'EXTENT':'Regije',
+          'HSPACING':0.001,
+          'VSPACING':0.001,
+          'HOVERLAY':0,
+          'VOVERLAY':0,
+          'CRS':crs,
+          'OUTPUT':layers_save+"output"+layer.name()+" "+date}
+    if layer.name()=="S ":
+        params_grid= {'TYPE':3,
+          'EXTENT':'Regije',
+          'HSPACING':0.001,
+          'VSPACING':0.001,
+          'HOVERLAY':0,
+          'VOVERLAY':0,
+          'CRS':crs,
+          'OUTPUT':layers_save+"output"+layer.name()+" "+date}
+    if layer.name()=="L ":
+        params_grid= {'TYPE':3,
+          'EXTENT':'Regije',
+          'HSPACING':0.01,
+          'VSPACING':0.01,
+          'HOVERLAY':0,
+          'VOVERLAY':0,
+          'CRS':crs,
+          'OUTPUT':layers_save+"output"+layer.name()+" "+date}
+    if layer.name()=="XL ":
+        params_grid= {'TYPE':3,
+          'EXTENT':'Regije',
+          'HSPACING':0.1,
+          'VSPACING':0.1,
+          'HOVERLAY':0,
+          'VOVERLAY':0,
+          'CRS':crs,
+          'OUTPUT':layers_save+"output"+layer.name()+" "+date}
+    crs = QgsProject().instance().crs().toWkt()
+    out1 = processing.run('native:creategrid', params_grid)
+    grid = QgsVectorLayer(out1['OUTPUT'], 'Grid'+layer.name(), 'ogr')
+    print("Printing grid")
+    QgsProject().instance().addMapLayer(grid)
+    params= {"POLYGONS": "Grid"+layer.name(),
+            "POINTS": layer.name(),
+            "WEIGHT": 'D [μSv/h]',
+            "FIELD": 'D [μSv/h]',
+            "OUTPUT": layers_save+"Mreža"+layer.name()+" "+date}
+            
+    out1=processing.run('qgis:countpointsinpolygon', params)
+    grid = QgsVectorLayer(out1['OUTPUT'], "Mreža"+layer.name(), 'ogr')
+    for lyr in ["Grid"+layer.name(),layer.name()]:
+        rmvLyr(lyr)
+    grid.setScaleBasedVisibility(True)
+    if grid.name()=="Mreža"+"XS ":
+        grid.setMinimumScale(50000.0)
+        grid.setMaximumScale(20.0)
+    if grid.name()=="Mreža"+"S ":
+        grid.setMinimumScale(50000.0)
+        grid.setMaximumScale(1000.0)
+    if grid.name()=="Mreža"+"L ":
+        grid.setMinimumScale(200000.0)
+        grid.setMaximumScale(25000.0)
+    if grid.name()=="Mreža"+"XL ":
+        grid.setMinimumScale(11000000.0)
+        grid.setMaximumScale(200000.0)
+        print("is working")
+    QgsProject().instance().addMapLayer(grid)
+    apply_graduated_symbology(grid, date)
     
 def apply_graduated_symbology(layer,date):
     target_field = 'D [μSv/h]'
     myRenderer  = QgsGraduatedSymbolRenderer()
     myRenderer.setClassAttribute(target_field)
     color1=mcp.gen_color(cmap="autumn",n=column_index)
-    border=[0,0.5,100,1000]
+    border=[0.01,0.5,100,1000]
     def Group(index, min, max,layer):
         symbol = QgsSymbol.defaultSymbol(layer.geometryType())
         symbol.setColor(QColor(str(color1[index])))
@@ -183,19 +280,17 @@ def apply_graduated_symbology(layer,date):
     if not os.path.exists(layers_save):
         os.makedirs(layers_save)        
     QgsLayerDefinition().exportLayerDefinition(layers_save+"Points "+layer.name()+" "+date+".qlr", [current_node])
-    layer.setName("Radioactivity Dose")    
-    print(f"Graduated color scheme applied")
+    layer.setName("Radioactivity Dose")
+    layer.setBlendMode(QPainter.CompositionMode_Darken)
+    layer.setFeatureBlendMode(QPainter.CompositionMode_ColorDodge)    
 
-def Creating_layer(file,date):
+def Creating_layer_dots(file,date):
     uri="file:///"+created+file+date+".csv"+"?type=regexp&delimiter=;&maxFields=10000&detectTypes=yes&decimalPoint=,&xField=E%20[Decimal%20degrees]&yField=N%20[Decimal%20degrees]&crs=EPSG:4326&spatialIndex=no&subsetIndex=no&watchFile=no"
     layer = QgsVectorLayer(uri, file, 'delimitedtext')
     layer.setScaleBasedVisibility(True)
     if file[0:2]=="XS":
-        layer.setMinimumScale(50000.0)
-        layer.setMaximumScale(20.0)
-    if file[0:1]=="S":
-        layer.setMinimumScale(200000.0)
-        layer.setMaximumScale(50000.0)
+        layer.setMinimumScale(25000.0)
+        layer.setMaximumScale(10.0)
     if file[0:1]=="L":
         layer.setMinimumScale(400000.0)
         layer.setMaximumScale(200000.0)
@@ -204,17 +299,27 @@ def Creating_layer(file,date):
         layer.setMaximumScale(400000.0)
     layer= QgsProject.instance().addMapLayer(layer)
     apply_graduated_symbology(layer,date)
+    
+    
+  
+#Creating_layer("L.csv")
 
-Creating_layer("XS ",date)
-Creating_layer("S ",date)
-Creating_layer("L ",date)
+
+
+layers_save = created+"Layers\\" 
+if not os.path.exists(layers_save):
+    os.makedirs(layers_save)        
+Creating_layer_dots("XS ",date)
+#Creating_layer("S.csv")
+#Creating_layer("L ",date)
 Creating_layer("XL ",date)
+rmvLyr("Regije")
 
 from qgis.PyQt import QtGui
+
 #layers = QgsProject.instance().mapLayersByName('MrežaXL')
 layers = QgsProject.instance().mapLayersByName('Radioactivity Dose')
 layer = layers[0]
-
 project = QgsProject.instance()
 manager = project.layoutManager()
 layoutName = 'Zemljevid Slovenije'
@@ -251,7 +356,7 @@ layerTree = QgsLayerTree()
 layerTree.addLayer(layer)
 legend.model().setRootGroup(layerTree)
 layout.addLayoutItem(legend)
-legend.attemptMove(QgsLayoutPoint(225, 160, QgsUnitTypes.LayoutMillimeters))
+legend.attemptMove(QgsLayoutPoint(225, 150, QgsUnitTypes.LayoutMillimeters))
 
 scalebar = QgsLayoutItemScaleBar(layout)
 scalebar.setStyle('Line Ticks Up')
@@ -264,8 +369,8 @@ scalebar.setUnitLabel('km')
 scalebar.setFont(QFont('Arial', 14))
 scalebar.update()
 layout.addLayoutItem(scalebar)
-scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
 
+scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
 layoutItemPicture = QgsLayoutItemPicture(layout)
 layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
 layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
@@ -276,7 +381,10 @@ new_dim = [i * 0.70 for i in dim_image_original]
 layoutItemPicture.attemptMove(QgsLayoutPoint(10, 180, QgsUnitTypes.LayoutMillimeters))
 layoutItemPicture.attemptResize(QgsLayoutSize(*new_dim, QgsUnitTypes.LayoutPixels))
 layout.addLayoutItem(layoutItemPicture)
+
 layout = manager.layoutByName("Zemljevid Slovenije")
 exporter = QgsLayoutExporter(layout)
-exporter.exportToPdf(saving_folder+"Slovenia "+date+".pdf", QgsLayoutExporter.PdfExportSettings())
-exporter.exportToImage(saving_folder+"Slovenia "+date+".png", QgsLayoutExporter.ImageExportSettings())
+exporter.exportToPdf(saving_folder+"Slovenia"+date+".pdf", QgsLayoutExporter.PdfExportSettings())
+exporter.exportToImage(saving_folder+"Slovenia"+date+".png", QgsLayoutExporter.ImageExportSettings())
+
+    
