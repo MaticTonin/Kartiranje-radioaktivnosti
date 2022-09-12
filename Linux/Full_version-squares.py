@@ -209,7 +209,7 @@ def apply_graduated_symbology_points(layer,border,color1):
 #FUNCTION FOR COLORING SQUARES
 #
 def apply_graduated_symbology(layer,date):
-    target_field = 'D [ÎĽSv/h]'
+    target_field = 'D [μSv/h]'
     myRenderer  = QgsGraduatedSymbolRenderer()
     myRenderer.setClassAttribute(target_field)
     color1=mcp.gen_color(cmap="autumn",n=column_index)
@@ -395,6 +395,7 @@ scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
 layoutItemPicture = QgsLayoutItemPicture(layout)
 layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
 layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
+print(THIS_FOLDER+"/Layers/logo.jpg")
 layoutItemPicture.setPicturePath(THIS_FOLDER+"/Layers/logo.jpg")
 
 dim_image_original = [1186, 360]

@@ -12,14 +12,16 @@ if INPUT=="y":
         else:
              print("The file "+i+" does not exist")
         with open(THIS_FOLDER+"/"+i,"a",encoding='utf-8') as file:
+            file.write("pip install pandas \n")
+            file.write("pip install mycolorpy \n")
             if i=="Dots.bat":
-                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-dots.PY")
+                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-dots.py")
             if i=="Squares.bat":
-                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-squares.PY")
+                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-squares.py")
             if i=="Grid.bat":
-               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-grid.PY")
+               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-grid.py")
             if i=="Interactive.bat":
-               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Interactive_version.PY")
+               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Interactive_version.py")
 if INPUT=="n":
     THIS_FOLDER=input("Enter the folder, were the python files are installed:")
     for i in ["Dots.bat", "Squares.bat", "Interactive.bat", "Grid.bat"]:
@@ -30,10 +32,10 @@ if INPUT=="n":
              print("The file "+i+" does not exist")
         with open(THIS_FOLDER+"/"+i,"a",encoding='utf-8') as file:
             if i=="Dots.bat":
-                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-dots.PY")
+                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-dots.py")
             if i=="Squares.bat":
-                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-squares.PY")
+                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-squares.py")
             if i=="Grid.bat":
-               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-grid.PY")
+               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-grid.py")
             if i=="Interactive.bat":
-               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Interactive_version.PY")
+               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Interactive_version.py")
