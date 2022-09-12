@@ -645,7 +645,7 @@ if item=="Slovenia map":
     layoutItemPicture = QgsLayoutItemPicture(layout)
     layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
     layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
-    layoutItemPicture.setPicturePath("C:/IJS/Obdelava/Final/Kartiranje-radioaktivnosti/Layers/logo.jpg")
+    layoutItemPicture.setPicturePath("C:/IJS/Obdelava/Final/Kartiranje-radioaktivnosti/Layers/Logo.jpg")
 
     dim_image_original = [1186, 360]
     new_dim = [i * 0.70 for i in dim_image_original]
@@ -730,7 +730,7 @@ if item=="Krško map":
     layoutItemPicture = QgsLayoutItemPicture(layout)
     layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
     layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
-    layoutItemPicture.setPicturePath("C:/IJS/Obdelava/Final/Kartiranje-radioaktivnosti/Layers/logo.jpg")
+    layoutItemPicture.setPicturePath("C:/IJS/Obdelava/Final/Kartiranje-radioaktivnosti/Layers/Logo.jpg")
 
     dim_image_original = [1186, 360]
     new_dim = [i * 0.70 for i in dim_image_original]
@@ -816,7 +816,7 @@ if item=="Both":
     layoutItemPicture = QgsLayoutItemPicture(layout)
     layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
     layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
-    layoutItemPicture.setPicturePath("C:/IJS/Obdelava/Final/Kartiranje-radioaktivnosti/Layers/logo.jpg")
+    layoutItemPicture.setPicturePath("C:/IJS/Obdelava/Final/Kartiranje-radioaktivnosti/Layers/Logo.jpg")
 
     dim_image_original = [1186, 360]
     new_dim = [i * 0.70 for i in dim_image_original]
@@ -883,7 +883,7 @@ if item=="Both":
     layoutItemPicture = QgsLayoutItemPicture(layout)
     layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
     layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
-    layoutItemPicture.setPicturePath("C:/IJS/Obdelava/Final/Kartiranje-radioaktivnosti/Layers/logo.jpg")
+    layoutItemPicture.setPicturePath("C:/IJS/Obdelava/Final/Kartiranje-radioaktivnosti/Layers/Logo.jpg")
 
     dim_image_original = [1186, 360]
     new_dim = [i * 0.70 for i in dim_image_original]
