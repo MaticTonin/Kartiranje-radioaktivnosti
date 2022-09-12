@@ -11,7 +11,6 @@ from qgis.utils import iface
 
 
 
-app = QApplication([])
 class InputDialog_DATA(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
