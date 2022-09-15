@@ -1,8 +1,7 @@
-import numpy as np 
 import os
-import pandas as pd
 print("Welcome to instalation of Map of radioactivity. \n")
 INPUT=input("Do you have all the python files installed in this folder (This folder+/python): (y/n)")
+print(INPUT)
 if INPUT=="y":
     THIS_FOLDER = os.path.dirname(os.path.abspath("__file__"))
     for i in ["Dots.bat", "Squares.bat", "Interactive.bat", "Grid.bat"]:
@@ -12,8 +11,6 @@ if INPUT=="y":
         else:
              print("The file "+i+" does not exist")
         with open(THIS_FOLDER+"/"+i,"a",encoding='utf-8') as file:
-            file.write("pip install pandas \n")
-            file.write("pip install mycolorpy \n")
             if i=="Dots.bat":
                 file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-dots.py")
             if i=="Squares.bat":

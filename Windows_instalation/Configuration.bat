@@ -1,0 +1,5 @@
+@ECHO OFF
+pip install numpy
+pip install pandas
+pip install mycolorpy
+python3 Config.py
