@@ -12,4 +12,4 @@ IF YOU RUN ON LINUX:
 1. If you run on Linux, and you have already download QGis, open cmd.
 2. Go to directory, were your files are (in case you just downloaded the file, that directory is Kartiranje-radioaktivnosti-main/)
 3. In cmd type python Config.py (if you have python3, type python3). This should create the new bat files to execute your program automaticly.
-4. After that, the instalation is complete. You ca now run bat files with cmd by typing cmod -R 777 . and then ./Filename.bat
+4. After that, the instalation is complete. You ca now run bat files with cmd by typing chmod -R 777 . and then ./Filename.bat
