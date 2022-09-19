@@ -347,6 +347,76 @@ def test():
     i+=1
     print(i)
     print("Done reseting")
+    from qgis.PyQt import QtGui
+    #layers = QgsProject.instance().mapLayersByName('MrežaXL')
+    layers = QgsProject.instance().mapLayersByName('Radioactivity Dose')
+    layer = layers[0]
+
+    project = QgsProject.instance()
+    manager = project.layoutManager()
+    layoutName = 'Zemljevid Slovenije'
+    layouts_list = manager.printLayouts()
+    # remove any duplicate layouts
+    for layout in layouts_list:
+        if layout.name() == layoutName:
+            manager.removeLayout(layout)
+    layout = QgsPrintLayout(project)
+    layout.initializeDefaults()
+    layout.setName(layoutName)
+    manager.addLayout(layout)
+
+    # create map item in the layout
+    map = QgsLayoutItemMap(layout)
+    map.setRect(20, 200, 20, 20)
+
+    # set the map extent
+    ms = QgsMapSettings()
+    ms.setLayers([layer]) # set layers to be mapped
+    rect = QgsRectangle(13.271,45.375,16.723,46.685)
+    rect.scale(1.0)
+    ms.setExtent(rect)
+    map.setExtent(rect)
+    map.setBackgroundColor(QColor(255, 255, 255, 0))
+    layout.addLayoutItem(map)
+
+    map.attemptMove(QgsLayoutPoint(5, 8, QgsUnitTypes.LayoutMillimeters))
+    map.attemptResize(QgsLayoutSize(285, 195, QgsUnitTypes.LayoutMillimeters))
+
+    legend = QgsLayoutItemLegend(layout)
+    #legend.setTitle("Prikaz radioaktivnosti,/nDoza [μSv/h]")
+    layerTree = QgsLayerTree()
+    layerTree.addLayer(layer)
+    legend.model().setRootGroup(layerTree)
+    layout.addLayoutItem(legend)
+    legend.attemptMove(QgsLayoutPoint(225, 160, QgsUnitTypes.LayoutMillimeters))
+
+    scalebar = QgsLayoutItemScaleBar(layout)
+    scalebar.setStyle('Line Ticks Up')
+    scalebar.setUnits(QgsUnitTypes.DistanceKilometers)
+    scalebar.setNumberOfSegments(2)
+    scalebar.setNumberOfSegmentsLeft(0)
+    scalebar.setUnitsPerSegment(20)
+    scalebar.setLinkedMap(map)
+    scalebar.setUnitLabel('km')
+    scalebar.setFont(QFont('Arial', 14))
+    scalebar.update()
+    layout.addLayoutItem(scalebar)
+    scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
+
+    layoutItemPicture = QgsLayoutItemPicture(layout)
+    layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
+    layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
+    layoutItemPicture.setPicturePath(THIS_FOLDER+"/Layers/Logo.jpg")
+
+    dim_image_original = [1186, 360]
+    new_dim = [i * 0.70 for i in dim_image_original]
+    layoutItemPicture.attemptMove(QgsLayoutPoint(10, 180, QgsUnitTypes.LayoutMillimeters))
+    layoutItemPicture.attemptResize(QgsLayoutSize(*new_dim, QgsUnitTypes.LayoutPixels))
+    layout.addLayoutItem(layoutItemPicture)
+    layout = manager.layoutByName("Zemljevid Slovenije")
+    exporter = QgsLayoutExporter(layout)
+    exporter.exportToPdf(saving_folder+"Slovenia "+date+".pdf", QgsLayoutExporter.PdfExportSettings())
+    exporter.exportToImage(saving_folder+"Slovenia "+date+".png", QgsLayoutExporter.ImageExportSettings())
     if i==5:
         return print("Done 5 times")
         run=False
