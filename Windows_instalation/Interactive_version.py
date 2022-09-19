@@ -453,9 +453,9 @@ def squares(data, layers, date):
         myRenderer.updateColorRamp(ramp)
         layer.setRenderer(myRenderer)
         layer.setOpacity(0.75)
-        layer.setName("Radioactivity dose")
         current_node = iface.layerTreeView().currentNode()
         QgsLayerDefinition().exportLayerDefinition(layers+"Squares "+layer.name()+".qlr", [current_node])
+        layer.setName("Radioactivity dose")
     #layer.setBlendMode(QPainter.CompositionMode_Normal)
     #layer.setFeatureBlendMode(QPainter.CompositionMode_Normal)
     #
