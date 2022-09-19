@@ -1,0 +1,3 @@
+North,East,id
+45.908167,15.600333,URSZR Izpostava Brezice
+45.956167,15.490167,PGE Krsko

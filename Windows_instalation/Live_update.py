@@ -26,7 +26,7 @@ def Datasets(date):
             fo = open(THIS_FOLDER + "\\"+str(filename), "wb")
             fo.close()
             os.remove(THIS_FOLDER + "\\"+str(filename))
-    dir_list=os.listdir(THIS_FOLDER+"\Created_layers")
+    #dir_list=os.listdir(THIS_FOLDER+"\Created_layers")
     """for i in dir_list:
         #print(os.path.splitext(i)[0][:6])
         if  os.path.splitext(i)[0][:6]=="output":
@@ -347,7 +347,7 @@ def test():
     i+=1
     print(i)
     print("Done reseting")
-    if i==5:
+    if i==55:
         return print("Done 5 times")
         run=False
     if run==True:
