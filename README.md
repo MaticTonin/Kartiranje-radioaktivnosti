@@ -11,6 +11,6 @@ IF YOU RUN ON WINDOWS:
 IF YOU RUN ON LINUX:
 1. Unzip folder and go in it. There are two directories.
 2. If you run on Linux go to Linux_installation. If you have not already installed QGIS type  chmod -R 777 ., press ENTER and then ./InstallQgis.bat
-3. In cmd type chmod -R 777 ., press ENTER and then ./Configuration.bat
+3. In cmd type chmod -R 777 ., press ENTER and then run ./Configuration.bat
    This should download all python plugins you need and create the new bat files to execute your program automaticly. (The question does not work with Caps     Lock).
-4. After that, the instalation is complete. You can now run bat files with cmd by typing chmod -R 777 . and then ./Filename.bat
+4. After that, the instalation is complete. You can now run bat files with cmd by typing chmod -R 777 ., pressing ENTER and then run ./Filename.bat
