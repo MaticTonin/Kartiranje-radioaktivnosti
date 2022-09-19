@@ -56,11 +56,11 @@ if folders.exec():
     else:
         data_folder=FILES[0]+"\\"
     if FILES[1]=='':
-        layers_save = THIS_FOLDER+"\\Created_Layers\\" 
+        layers_save = THIS_FOLDER+"\\Data\\Created\\Layers\\" 
         if not os.path.exists(layers_save):
             os.makedirs(layers_save)
-        print(THIS_FOLDER+"\\Created_Layers\\")
-        created_layers=THIS_FOLDER+"\\Created_layers\\"
+        print(THIS_FOLDER+"\\Data\\Created\\Layers\\")
+        created_layers=THIS_FOLDER+"\\Data\\Created\\Layers\\"
     else:
         created_layers=FILES[1]+"\\"
     if FILES[2]=='':
@@ -224,9 +224,9 @@ def krogci(data,layers,date):
         myRenderer.updateColorRamp(ramp)
         layer.setRenderer(myRenderer)
         layer.setOpacity(0.75)
-        layer.setName("Radioactivity dose")
         current_node = iface.layerTreeView().currentNode()
         QgsLayerDefinition().exportLayerDefinition(layers+"Points "+layer.name()+".qlr", [current_node])    
+        layer.setName("Radioactivity dose") 
 
     def Creating_layer(file):
         uri="file:///"+data+file+"?type=regexp&delimiter=;&maxFields=10000&detectTypes=yes&decimalPoint=,&xField=E%20[Decimal%20degrees]&yField=N%20[Decimal%20degrees]&crs=EPSG:4326&spatialIndex=no&subsetIndex=no&watchFile=no"
@@ -283,7 +283,7 @@ def grid(data,layers,date):
                 'HOVERLAY':0,
                 'VOVERLAY':0,
                 'CRS':crs,
-                'OUTPUT':'memoryXS'}
+                'OUTPUT':layers_save+"output"+layer.name()+" "+date}
         if file[0:1]=="S":
             params_grid= {'TYPE':3,
                 'EXTENT':'Regije',
@@ -292,7 +292,7 @@ def grid(data,layers,date):
                 'HOVERLAY':0,
                 'VOVERLAY':0,
                 'CRS':crs,
-                'OUTPUT':'memoryS'}
+                'OUTPUT':layers_save+"output"+layer.name()+" "+date}
         if file[0:1]=="L":
             params_grid= {'TYPE':3,
                 'EXTENT':'Regije',
@@ -301,7 +301,7 @@ def grid(data,layers,date):
                 'HOVERLAY':0,
                 'VOVERLAY':0,
                 'CRS':crs,
-                'OUTPUT':'memoryL'}
+                'OUTPUT':layers_save+"output"+layer.name()+" "+date}
         if file[0:2]=="XL":
             params_grid= {'TYPE':3,
                 'EXTENT':'Regije',
@@ -310,20 +310,20 @@ def grid(data,layers,date):
                 'HOVERLAY':0,
                 'VOVERLAY':0,
                 'CRS':crs,
-                'OUTPUT':'memoryXL'}
+                'OUTPUT':layers_save+"output"+layer.name()+" "+date}
         crs = QgsProject().instance().crs().toWkt()
         out1 = processing.run('native:creategrid', params_grid)
-        grid = QgsVectorLayer(out1['OUTPUT'], 'Grid'+file, 'ogr')
+        grid = QgsVectorLayer(out1['OUTPUT'], 'Grid'+file+" "+date, 'ogr')
         print("Printing grid")
         QgsProject().instance().addMapLayer(grid)
-        params= {"POLYGONS": "Grid"+file,
+        params= {"POLYGONS": "Grid"+file+" "+date,
                 "POINTS": file,
                 "WEIGHT": 'D [μSv/h]',
                 "FIELD": 'D [μSv/h]',
-                "OUTPUT": 'Mreža'+file[0:2]}
+                "OUTPUT": layers_save+'Mreža'+file[0:2]+" "+date}
         out1=processing.run('qgis:countpointsinpolygon', params)
-        grid = QgsVectorLayer(out1['OUTPUT'], "Mreža"+file[0:2], 'ogr')
-        for lyr in ["Grid"+str(file),str(file)]:
+        grid = QgsVectorLayer(out1['OUTPUT'], "Mreža"+file[0:2]+" "+date, 'ogr')
+        for lyr in ['Grid'+str(file)+" "+str(date),str(file)]:
             rmvLyr(lyr)
         grid.setScaleBasedVisibility(True)
         if file[0:2]=="XS":
@@ -365,9 +365,11 @@ def grid(data,layers,date):
         myRenderer.updateColorRamp(ramp)
         layer.setRenderer(myRenderer)
         layer.setOpacity(0.75)
-        layer.setName("Radioactivity dose")
         layer.setBlendMode(QPainter.CompositionMode_Darken)
-        layer.setFeatureBlendMode(QPainter.CompositionMode_ColorDodge)    
+        layer.setFeatureBlendMode(QPainter.CompositionMode_ColorDodge)
+        current_node = iface.layerTreeView().currentNode()
+        QgsLayerDefinition().exportLayerDefinition(layers_save+"Grid "+layer.name()+" "+date+".qlr", [current_node])
+        layer.setName("Radioactivity dose")
 
     def Creating_layer_dots(file,data,layers,date):
         uri="file:///"+data+file+"?type=regexp&delimiter=;&maxFields=10000&detectTypes=yes&decimalPoint=,&xField=E%20[Decimal%20degrees]&yField=N%20[Decimal%20degrees]&crs=EPSG:4326&spatialIndex=no&subsetIndex=no&watchFile=no"
@@ -422,9 +424,9 @@ def squares(data, layers, date):
         ramp = QgsCptCityColorRamp("wkp/precip/wiki-precip-mm","",False,True)
         myRenderer.updateColorRamp(ramp)    
         layer.setRenderer(myRenderer)
-        layer.setName("Radioactivity dose")
         current_node = iface.layerTreeView().currentNode()
         QgsLayerDefinition().exportLayerDefinition(layers+"Points "+layer.name()+".qlr", [current_node])    
+        layer.setName("Radioactivity dose")
     #
     #FUNCTION FOR COLORING SQUARES
     #
@@ -453,7 +455,7 @@ def squares(data, layers, date):
         layer.setOpacity(0.75)
         layer.setName("Radioactivity dose")
         current_node = iface.layerTreeView().currentNode()
-        QgsLayerDefinition().exportLayerDefinition(THIS_FOLDER+"/Created_layers/Squares "+layer.name()+".qlr", [current_node])
+        QgsLayerDefinition().exportLayerDefinition(layers+"Squares "+layer.name()+".qlr", [current_node])
     #layer.setBlendMode(QPainter.CompositionMode_Normal)
     #layer.setFeatureBlendMode(QPainter.CompositionMode_Normal)
     #
@@ -503,7 +505,7 @@ def squares(data, layers, date):
                 "DISTANCE": 0.05,
                 "SEGMENTS": 4,
                 "END_CAP_STYLE": 2,
-                "OUTPUT": THIS_FOLDER+"/Created_layers/output"+layer.name()+".shp"}
+                "OUTPUT": layers+"output"+layer.name()+".shp"}
         out1=processing.run("native:buffer", params)
         grid = QgsVectorLayer(out1['OUTPUT'], "Buffed"+layer.name(), 'ogr')
         QgsProject().instance().addMapLayer(grid)

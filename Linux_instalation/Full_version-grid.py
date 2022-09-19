@@ -278,11 +278,12 @@ def apply_graduated_symbology(layer,date):
     current_node = iface.layerTreeView().currentNode()
     layers_save = created+"Layers/" 
     if not os.path.exists(layers_save):
-        os.makedirs(layers_save)        
-    QgsLayerDefinition().exportLayerDefinition(layers_save+"Points "+layer.name()+" "+date+".qlr", [current_node])
-    layer.setName("Radioactivity Dose")
+        os.makedirs(layers_save)
     layer.setBlendMode(QPainter.CompositionMode_Darken)
     layer.setFeatureBlendMode(QPainter.CompositionMode_ColorDodge)    
+    current_node = iface.layerTreeView().currentNode()
+    QgsLayerDefinition().exportLayerDefinition(layers_save+"Grid "+layer.name()+" "+date+".qlr", [current_node])
+    layer.setName("Radioactivity dose")      
 
 def Creating_layer_dots(file,date):
     uri="file:///"+created+file+date+".csv"+"?type=regexp&delimiter=;&maxFields=10000&detectTypes=yes&decimalPoint=,&xField=E%20[Decimal%20degrees]&yField=N%20[Decimal%20degrees]&crs=EPSG:4326&spatialIndex=no&subsetIndex=no&watchFile=no"
@@ -308,10 +309,10 @@ def Creating_layer_dots(file,date):
 
 layers_save = created+"Layers/" 
 if not os.path.exists(layers_save):
-    os.makedirs(layers_save)        
+    os.makedirs(layers_save)      
 Creating_layer_dots("XS ",date)
 #Creating_layer("S.csv")
-#Creating_layer("L ",date)
+Creating_layer("L ",date)
 Creating_layer("XL ",date)
 rmvLyr("Regije")
 

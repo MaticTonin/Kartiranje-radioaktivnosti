@@ -279,7 +279,7 @@ def apply_graduated_symbology(layer,date):
     layers_save = created+"Layers\\" 
     if not os.path.exists(layers_save):
         os.makedirs(layers_save)        
-    QgsLayerDefinition().exportLayerDefinition(layers_save+"Points "+layer.name()+" "+date+".qlr", [current_node])
+    QgsLayerDefinition().exportLayerDefinition(layers_save+"Grid "+layer.name()+" "+date+".qlr", [current_node])
     layer.setName("Radioactivity Dose")
     layer.setBlendMode(QPainter.CompositionMode_Darken)
     layer.setFeatureBlendMode(QPainter.CompositionMode_ColorDodge)    

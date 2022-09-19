@@ -201,9 +201,9 @@ def apply_graduated_symbology_points(layer,border,color1):
     ramp = QgsCptCityColorRamp("wkp/precip/wiki-precip-mm","",False,True)
     myRenderer.updateColorRamp(ramp)    
     layer.setRenderer(myRenderer)
-    layer.setName("Doza radioaktivnosti")
     current_node = iface.layerTreeView().currentNode()
-    QgsLayerDefinition().exportLayerDefinition(THIS_FOLDER+"/Created_layers/Points "+layer.name()+".qlr", [current_node])    
+    QgsLayerDefinition().exportLayerDefinition(THIS_FOLDER+"/Created_layers/Points "+layer.name()+".qlr", [current_node])
+    layer.setName("Doza radioaktivnosti")    
     print(f"Graduated color scheme applied")
 #
 #FUNCTION FOR COLORING SQUARES
