@@ -20,7 +20,7 @@ if INPUT=="y":
             if i=="Interactive.bat":
                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Interactive_version.py")
             if i=="Live.bat":
-               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Live_version.py")
+               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Live_update.py")
 if INPUT=="n":
     THIS_FOLDER=input("Enter the folder, were the python files are installed:")
     for i in ["Dots.bat", "Squares.bat", "Interactive.bat", "Grid.bat"]:
@@ -39,4 +39,4 @@ if INPUT=="n":
             if i=="Interactive.bat":
                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Interactive_version.py")
             if i=="Live.bat":
-               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Live_version.py")
+               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Live_update.py")

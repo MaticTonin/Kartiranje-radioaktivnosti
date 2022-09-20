@@ -175,7 +175,7 @@ QgsProject.instance().addMapLayers(layer_list)
 def creating_grid(name):
     crs = QgsProject().instance().crs().toWkt() # it is EPSG:3857 
     out1 = processing.run('native:creategrid', params_grid)
-    grid = QgsVectorLayer(out1['OUTPUT'], 'Mreža XL', 'ogr')
+    grid = QgsVectorLayer(out1['OUTPUT'], layers_save+'Mreža XL', 'ogr')
     QgsProject().instance().addMapLayer(grid)
 
 def Creating_layer(file,date):
@@ -374,7 +374,6 @@ layout.addLayoutItem(scalebar)
 scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
 layoutItemPicture = QgsLayoutItemPicture(layout)
 layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
-layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
 layoutItemPicture.setPicturePath(THIS_FOLDER+"/Layers/Logo.jpg")
 
 dim_image_original = [1186, 360]

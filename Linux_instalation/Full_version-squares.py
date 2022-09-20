@@ -394,7 +394,6 @@ scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
 
 layoutItemPicture = QgsLayoutItemPicture(layout)
 layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
-layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
 print(THIS_FOLDER+"/Layers/logo.jpg")
 layoutItemPicture.setPicturePath(THIS_FOLDER+"/Layers/Logo.jpg")
 

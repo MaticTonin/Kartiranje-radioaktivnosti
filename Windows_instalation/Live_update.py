@@ -38,17 +38,17 @@ if ok and item:
         folders = InputDialog_DATA()
         if folders.exec():
             minutes=float(folders.getInputs())
-            iterations=int(minutes*60/10)
+            iterations=int(minutes*60/5)
     if item=="Seconds":
         folders = InputDialog_DATA()
         if folders.exec():
             seconds=float(folders.getInputs())
-            iterations=int(seconds/10)
+            iterations=int(seconds/5)
     if item=="Hours":
         folders = InputDialog_DATA()
         if folders.exec():
             seconds=float(folders.getInputs())
-            iterations=int(seconds*3600/10)
+            iterations=int(seconds*3600/5)
     if item=="Infinity":
         iterations=10**40
 

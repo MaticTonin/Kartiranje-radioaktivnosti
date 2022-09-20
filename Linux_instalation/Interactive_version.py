@@ -321,7 +321,7 @@ def grid(data,layers,date):
                 "FIELD": 'D [μSv/h]',
                 "OUTPUT": 'Mreža'+file[0:2]+" "+date}
         out1=processing.run('qgis:countpointsinpolygon', params)
-        grid = QgsVectorLayer(out1['OUTPUT'], "Mreža"+file[0:2]+" "+date, 'ogr')
+        grid = QgsVectorLayer(out1['OUTPUT'], layers_save+"Mreža"+file[0:2]+" "+date, 'ogr')
         for lyr in ['Grid'+str(file)+" "+str(date),str(file)]:
             rmvLyr(lyr)
         grid.setScaleBasedVisibility(True)
@@ -646,8 +646,7 @@ if item=="Slovenia map":
     scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
     layoutItemPicture = QgsLayoutItemPicture(layout)
     layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
-    layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
-    layoutItemPicture.setPicturePath("C:/IJS/Obdelava/Final/Kartiranje-radioaktivnosti/Layers/Logo.jpg")
+    layoutItemPicture.setPicturePath(THIS_FOLDER+"/Layers/Logo.jpg")
 
     dim_image_original = [1186, 360]
     new_dim = [i * 0.70 for i in dim_image_original]
@@ -731,8 +730,7 @@ if item=="Krško map":
     scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
     layoutItemPicture = QgsLayoutItemPicture(layout)
     layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
-    layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
-    layoutItemPicture.setPicturePath("C:/IJS/Obdelava/Final/Kartiranje-radioaktivnosti/Layers/Logo.jpg")
+    layoutItemPicture.setPicturePath(THIS_FOLDER+"/Layers/Logo.jpg")
 
     dim_image_original = [1186, 360]
     new_dim = [i * 0.70 for i in dim_image_original]
@@ -817,8 +815,7 @@ if item=="Both":
     
     layoutItemPicture = QgsLayoutItemPicture(layout)
     layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
-    layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
-    layoutItemPicture.setPicturePath("C:/IJS/Obdelava/Final/Kartiranje-radioaktivnosti/Layers/Logo.jpg")
+    layoutItemPicture.setPicturePath(THIS_FOLDER+"/Layers/Logo.jpg")
 
     dim_image_original = [1186, 360]
     new_dim = [i * 0.70 for i in dim_image_original]
@@ -884,8 +881,7 @@ if item=="Both":
     
     layoutItemPicture = QgsLayoutItemPicture(layout)
     layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
-    layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
-    layoutItemPicture.setPicturePath("C:/IJS/Obdelava/Final/Kartiranje-radioaktivnosti/Layers/Logo.jpg")
+    layoutItemPicture.setPicturePath(THIS_FOLDER+"/Layers/Logo.jpg")
 
     dim_image_original = [1186, 360]
     new_dim = [i * 0.70 for i in dim_image_original]

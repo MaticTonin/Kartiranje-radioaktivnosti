@@ -7,6 +7,12 @@ import pandas as pd
 THIS_FOLDER = os.path.dirname(os.path.abspath("__file__"))
 import shutil
 
+#DODAJ VSEM
+from PyQt5.QtWidgets import QInputDialog, QLineEdit, QDialog, QApplication, QDialogButtonBox, QFormLayout
+from processing.core.Processing import processing
+from PyQt5.QtGui import QColor, QFont,QPainter
+from qgis.utils import iface
+
 qid = QDialog()
 items = ("Minutes", "Seconds","Hours", "Infinity")        
 item, ok = QInputDialog.getItem(qid, "Timer scale of program", "Scale of running program (1 picture takes 10 seconds):", items, 0, False)
@@ -371,7 +377,6 @@ scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
 
 layoutItemPicture = QgsLayoutItemPicture(layout)
 layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
-layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
 layoutItemPicture.setPicturePath(THIS_FOLDER+"/Layers/Logo.jpg")
 
 dim_image_original = [1186, 360]
@@ -448,7 +453,6 @@ def test():
 
     layoutItemPicture = QgsLayoutItemPicture(layout)
     layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
-    layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
     layoutItemPicture.setPicturePath(THIS_FOLDER+"/Layers/Logo.jpg")
 
     dim_image_original = [1186, 360]
