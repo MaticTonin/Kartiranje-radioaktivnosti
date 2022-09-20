@@ -9,8 +9,6 @@ from PyQt5.QtWidgets import QInputDialog, QLineEdit, QDialog, QApplication, QDia
 from PyQt5.QtGui import QColor, QFont
 from qgis.utils import iface
 
-
-
 class InputDialog_DATA(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)

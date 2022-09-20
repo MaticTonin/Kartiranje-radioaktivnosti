@@ -7,6 +7,52 @@ import pandas as pd
 THIS_FOLDER = os.path.dirname(os.path.abspath("__file__"))
 import shutil
 
+qid = QDialog()
+items = ("Minutes", "Seconds","Hours", "Infinity")        
+item, ok = QInputDialog.getItem(qid, "Timer scale of program", "Scale of running program (1 picture takes 10 seconds):", items, 0, False)
+iterations=0
+
+class InputDialog_DATA(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Map of Radioactivity in Slovenia, creating live maps")
+        self.first = QLineEdit(self)
+        buttonBox = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel, self);
+
+        layout = QFormLayout(self)
+        if item=="Minutes":
+            layout.addRow("How many minutes do you wanna run program:", self.first)
+        if item=="Seconds":
+            layout.addRow("How many seconds do you wanna run program:", self.first)
+        if item=="Hours":
+            layout.addRow("How many hours do you wanna run program:", self.first)
+        layout.addWidget(buttonBox)
+
+        buttonBox.accepted.connect(self.accept)
+        buttonBox.rejected.connect(self.reject)
+    def getInputs(self):
+        return (self.first.text())
+        
+if ok and item:
+    if item=="Minutes":
+        folders = InputDialog_DATA()
+        if folders.exec():
+            minutes=float(folders.getInputs())
+            iterations=int(minutes*60/10)
+    if item=="Seconds":
+        folders = InputDialog_DATA()
+        if folders.exec():
+            seconds=float(folders.getInputs())
+            iterations=int(seconds/10)
+    if item=="Hours":
+        folders = InputDialog_DATA()
+        if folders.exec():
+            seconds=float(folders.getInputs())
+            iterations=int(seconds*3600/10)
+    if item=="Infinity":
+        iterations=10**40
+
+    
 #THIS_FOLDER=THIS_FOLDER+"\Obdelava\\"
 def Datasets(date):
     saving = THIS_FOLDER+"\Data\Created\Saved_files\\"
@@ -164,42 +210,11 @@ def Reseting(date):
             layer.loadNamedStyle(THIS_FOLDER+"\Layers\XL.qml")
         ramp = QgsCptCityColorRamp("grass/gyr","",False,True)
         myRenderer.updateColorRamp(ramp)
+        layer.setName("Radioactivity Dose")
         #layer.setRenderer(myRenderer)
         #current_node = iface.layerTreeView().currentNode()
         #QgsLayerDefinition().exportLayerDefinition(THIS_FOLDER+"/Created_layers/Points "+layer.name()+" "+date+".qlr", [current_node])    
-    #
-    #FUNCTION FOR COLORING SQUARES
-    #
-    def apply_graduated_symbology(layer,date):
-        target_field = 'D [μSv/h]'
-        myRenderer  = QgsGraduatedSymbolRenderer()
-        myRenderer.setClassAttribute(target_field)
-        color1=mcp.gen_color(cmap="autumn",n=column_index)
-        border=[0,0.5,100,1000]
-        def Group(index, min, max,layer):
-            symbol = QgsSymbol.defaultSymbol(layer.geometryType())
-            symbol.setColor(QColor(str(color1[index])))
-            myRange = QgsRendererRange(min, max, symbol, 'Group'+str(index)+", "+str(min)+"-"+str(max))
-            return myRange
-        
-        myRangeList = []
-        for i in range(0,column_index):
-            myRange=Group(i,border[i], border[i+1],layer)
-            myRangeList.append(myRange) 
 
-        myRenderer = QgsGraduatedSymbolRenderer(target_field, myRangeList)  
-        myRenderer.setMode(QgsGraduatedSymbolRenderer.Custom)
-        ramp = QgsCptCityColorRamp("grass/gyr","",False,True)
-        myRenderer.updateColorRamp(ramp)
-        layer.setRenderer(myRenderer)
-        layer.setOpacity(0.75)
-        #current_node = iface.layerTreeView().currentNode()
-        #QgsLayerDefinition().exportLayerDefinition(THIS_FOLDER+"/Created_layers/Squares "+layer.name()+" "+date+".qlr", [current_node])
-    #layer.setBlendMode(QPainter.CompositionMode_Normal)
-    #layer.setFeatureBlendMode(QPainter.CompositionMode_Normal)
-    #
-    #FUNCTION FOR CREATING SQUARES
-    #
     def Creating_map(layer,date):
         #Getting the data max in min for labels
         target_field = 'D [μSv/h]'
@@ -284,10 +299,10 @@ def Reseting(date):
         layer.setAutoRefreshInterval(2000)
         layer.setAutoRefreshEnabled(True)
         Creating_map(layer,date)
-    Creating_layer("XS","XS "+date+".csv",date)
     #Creating_layer("S.csv")
-    Creating_layer("L","L "+date+".csv",date)
     Creating_layer("XL","XL "+date+".csv",date)
+    Creating_layer("L","L "+date+".csv",date)
+    Creating_layer("XS","XS "+date+".csv",date)
     
 from datetime import datetime
 import time
@@ -302,74 +317,101 @@ if rlayer.isValid():
 else:
     print('invalid layer')
 Reseting(date)
-print("Normal layer")
+from qgis.PyQt import QtGui
+#layers = QgsProject.instance().mapLayersByName('MrežaXL')
+layers = QgsProject.instance().mapLayersByName("Radioactivity Dose")
+layer = layers[0]
+project = QgsProject.instance()
+manager = project.layoutManager()
+layoutName = 'Zemljevid Slovenije'+date
+layouts_list = manager.printLayouts()
+# remove any duplicate layouts
+layout = QgsPrintLayout(project)
+layout.initializeDefaults()
+layout.setName(layoutName)
+manager.addLayout(layout)
+
+# create map item in the layout
+map = QgsLayoutItemMap(layout)
+map.setRect(20, 200, 20, 20)
+
+# set the map extent
+ms = QgsMapSettings()
+ms.setLayers([layer]) # set layers to be mapped
+rect = QgsRectangle(13.271,45.375,16.723,46.685)
+rect.scale(1.0)
+ms.setExtent(rect)
+map.setExtent(rect)
+map.setBackgroundColor(QColor(255, 255, 255, 0))
+layout.addLayoutItem(map)
+
+map.attemptMove(QgsLayoutPoint(5, 8, QgsUnitTypes.LayoutMillimeters))
+map.attemptResize(QgsLayoutSize(285, 195, QgsUnitTypes.LayoutMillimeters))
+
+legend = QgsLayoutItemLegend(layout)
+#legend.setTitle("Prikaz radioaktivnosti,/nDoza [μSv/h]")
+layerTree = QgsLayerTree()
+layerTree.addLayer(layer)
+legend.model().setRootGroup(layerTree)
+layout.addLayoutItem(legend)
+legend.attemptMove(QgsLayoutPoint(225, 130, QgsUnitTypes.LayoutMillimeters))
+
+scalebar = QgsLayoutItemScaleBar(layout)
+scalebar.setStyle('Line Ticks Up')
+scalebar.setUnits(QgsUnitTypes.DistanceKilometers)
+scalebar.setNumberOfSegments(2)
+scalebar.setNumberOfSegmentsLeft(0)
+scalebar.setUnitsPerSegment(20)
+scalebar.setLinkedMap(map)
+scalebar.setUnitLabel('km')
+scalebar.setFont(QFont('Arial', 14))
+scalebar.update()
+layout.addLayoutItem(scalebar)
+scalebar.attemptMove(QgsLayoutPoint(225, 190, QgsUnitTypes.LayoutMillimeters))
+
+layoutItemPicture = QgsLayoutItemPicture(layout)
+layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
+layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
+layoutItemPicture.setPicturePath(THIS_FOLDER+"/Layers/Logo.jpg")
+
+dim_image_original = [1186, 360]
+new_dim = [i * 0.70 for i in dim_image_original]
+layoutItemPicture.attemptMove(QgsLayoutPoint(10, 180, QgsUnitTypes.LayoutMillimeters))
+layoutItemPicture.attemptResize(QgsLayoutSize(*new_dim, QgsUnitTypes.LayoutPixels))
+layout.addLayoutItem(layoutItemPicture)
+exporter = QgsLayoutExporter(layout)
+#exporter.exportToPdf(THIS_FOLDER+"\\Output\\"+"Slovenia "+date+".pdf", QgsLayoutExporter.PdfExportSettings())
+exporter.exportToImage(THIS_FOLDER+"\\Output\\"+"Slovenia "+date+".png", QgsLayoutExporter.ImageExportSettings())
+
 from threading import Timer
-"""QgsProject.instance().reloadAllLayers()
-from qgis.PyQt.QtCore import QSettings
-QSettings().setValue("/qgis/map_update_interval",150)
-layer = QgsProject.instance().mapLayersByName("BuffedXL")[0]
-print(layer)
-layer.setAutoRefreshInterval(5000)
-layer.setAutoRefreshEnabled(True)"""
     
 run = True
 i=0
 def test():
-    global i
     import time
     global run
-    #rmvLyr("BuffedL")
-    #rmvLyr("BuffedXL")
-    #rmvLyr("BuffedXS")
-    #rmvLyr("OpenStreetMap"
-    #now =datetime.now()
-    #date = now.strftime("%d-%m-%Y_%H-%M-%S")
-    print("Deleting")
-    #rmvLyr("L")
-    #rmvLyr("XL")
-    #rmvLyr("XS")
-    print("Done Deleting")
-    print("Creating dataset")
     Datasets(date)
-    """layers = QgsProject.instance().mapLayersByName('XL')
-    layer = layers[0]
-    Creating_map(layer,date)
-    layers = QgsProject.instance().mapLayersByName('L')
-    layer = layers[0]
-    Creating_map(layer,date)
-    layers = QgsProject.instance().mapLayersByName('XS')
-    layer = layers[0]
-    Creating_map(layer,date)"""
-    #rmvLyr("XL")
-    print("Done Creating dataset")
-    print("Reseting")
-    #Reseting(date)
-    i+=1
-    print(i)
-    print("Done reseting")
     now_2 = datetime.now()
     date_2 = now_2.strftime("%d-%m-%Y_%H-%M-%S")
     from qgis.PyQt import QtGui
     #layers = QgsProject.instance().mapLayersByName('MrežaXL')
-    layers = QgsProject.instance().mapLayersByName('XL')
+    layers = QgsProject.instance().mapLayersByName("Radioactivity Dose")
     layer = layers[0]
     project = QgsProject.instance()
     manager = project.layoutManager()
-    layoutName = 'Zemljevid Slovenije'+date
+    layoutName = 'Zemljevid Slovenije'+date_2
     layouts_list = manager.printLayouts()
     # remove any duplicate layouts
-    for layout in layouts_list:
-        if layout.name() == layoutName:
-            manager.removeLayout(layout)
+    for layout1 in layouts_list:
+        if layout1.name() != layoutName:
+            manager.removeLayout(layout1)
     layout = QgsPrintLayout(project)
     layout.initializeDefaults()
     layout.setName(layoutName)
     manager.addLayout(layout)
-
     # create map item in the layout
     map = QgsLayoutItemMap(layout)
     map.setRect(20, 200, 20, 20)
-
     # set the map extent
     ms = QgsMapSettings()
     ms.setLayers([layer]) # set layers to be mapped
@@ -389,7 +431,7 @@ def test():
     layerTree.addLayer(layer)
     legend.model().setRootGroup(layerTree)
     layout.addLayoutItem(legend)
-    legend.attemptMove(QgsLayoutPoint(225, 160, QgsUnitTypes.LayoutMillimeters))
+    legend.attemptMove(QgsLayoutPoint(225, 130, QgsUnitTypes.LayoutMillimeters))
 
     scalebar = QgsLayoutItemScaleBar(layout)
     scalebar.setStyle('Line Ticks Up')
@@ -414,13 +456,8 @@ def test():
     layoutItemPicture.attemptMove(QgsLayoutPoint(10, 180, QgsUnitTypes.LayoutMillimeters))
     layoutItemPicture.attemptResize(QgsLayoutSize(*new_dim, QgsUnitTypes.LayoutPixels))
     layout.addLayoutItem(layoutItemPicture)
-    layout = manager.layoutByName("Zemljevid Slovenije"+date)
     exporter = QgsLayoutExporter(layout)
     #exporter.exportToPdf(THIS_FOLDER+"\\Output\\"+"Slovenia "+date+".pdf", QgsLayoutExporter.PdfExportSettings())
     exporter.exportToImage(THIS_FOLDER+"\\Output\\"+"Slovenia "+date_2+".png", QgsLayoutExporter.ImageExportSettings())
-    if i==5:
-        return print("Done 5 times")
-        run=False
-    if run==True:
-        Timer(10, test).start()
-test()
+for i in range(iterations):
+    test()

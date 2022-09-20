@@ -4,7 +4,7 @@ INPUT=input("Do you have all the python files installed in this folder (This fol
 print(INPUT)
 if INPUT=="y":
     THIS_FOLDER = os.path.dirname(os.path.abspath("__file__"))
-    for i in ["Dots.bat", "Squares.bat", "Interactive.bat", "Grid.bat"]:
+    for i in ["Dots.bat", "Squares.bat", "Interactive.bat", "Grid.bat", "Live.bat"]:
         if os.path.exists(THIS_FOLDER+"/"+i):
             print("The file "+i+" does exist")
             os.remove(THIS_FOLDER+"/"+i)
@@ -19,6 +19,8 @@ if INPUT=="y":
                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-grid.py")
             if i=="Interactive.bat":
                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Interactive_version.py")
+            if i=="Live.bat":
+               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Live_version.py")
 if INPUT=="n":
     THIS_FOLDER=input("Enter the folder, were the python files are installed:")
     for i in ["Dots.bat", "Squares.bat", "Interactive.bat", "Grid.bat"]:
@@ -36,3 +38,5 @@ if INPUT=="n":
                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-grid.py")
             if i=="Interactive.bat":
                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Interactive_version.py")
+            if i=="Live.bat":
+               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Live_version.py")
