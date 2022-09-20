@@ -12,15 +12,15 @@ if INPUT=="y":
              print("The file "+i+" does not exist")
         with open(THIS_FOLDER+"/"+i,"a",encoding='utf-8') as file:
             if i=="Dots.bat":
-                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-dots.py")
+                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Programs/Full_version-dots.py")
             if i=="Squares.bat":
-                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-squares.py")
+                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Programs/Full_version-squares.py")
             if i=="Grid.bat":
-               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-grid.py")
+               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Programs/Full_version-grid.py")
             if i=="Interactive.bat":
-               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Interactive_version.py")
+               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Programs/Interactive_version.py")
             if i=="Live.bat":
-               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Live_update.py")
+               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Programs/Live_update.py")
 if INPUT=="n":
     THIS_FOLDER=input("Enter the folder, were the python files are installed:")
     for i in ["Dots.bat", "Squares.bat", "Interactive.bat", "Grid.bat"]:
@@ -31,12 +31,12 @@ if INPUT=="n":
              print("The file "+i+" does not exist")
         with open(THIS_FOLDER+"/"+i,"a",encoding='utf-8') as file:
             if i=="Dots.bat":
-                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-dots.py")
+                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Programs/Full_version-dots.py")
             if i=="Squares.bat":
-                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-squares.py")
+                file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Programs/Full_version-squares.py")
             if i=="Grid.bat":
-               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Full_version-grid.py")
+               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Programs/Full_version-grid.py")
             if i=="Interactive.bat":
-               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Interactive_version.py")
+               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Programs/Interactive_version.py")
             if i=="Live.bat":
-               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Live_update.py")
+               file.write("qgis --nologo --project "+THIS_FOLDER+"/Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"/Programs/Live_update.py")
