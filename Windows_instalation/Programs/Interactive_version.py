@@ -164,12 +164,6 @@ def dataSets(date,data,layers):
     outfile.close()
     return created
 
-urlWithParams = 'type=xyz&url=https://a.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0&crs=EPSG3857'
-rlayer = QgsRasterLayer(urlWithParams, 'OpenStreetMap', 'wms')  
-if rlayer.isValid():
-    QgsProject.instance().addMapLayer(rlayer)
-else:
-    print('invalid layer')
     
 def Zones_window():
     qid = QDialog()
@@ -191,7 +185,6 @@ def Zones_window():
         QgsProject.instance().addMapLayers(layer_list)
 
 
-Zones_window()
 #Window for choosing which one  
 qid = QDialog()
 items = ("Circles", "Squares", "Polygons", "None")        
@@ -202,6 +195,10 @@ item, ok = QInputDialog.getItem(qid, "Showing data on map", "Show data as:", ite
 def krogci(data,layers,date):
     column_index=3
     
+    urlWithParams = 'type=xyz&url=https://a.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0&crs=EPSG3857'
+    rlayer = QgsRasterLayer(urlWithParams, 'OpenStreetMap', 'wms')  
+    if rlayer.isValid():
+        QgsProject.instance().addMapLayer(rlayer)
     def apply_graduated_symbology(layer):
         target_field = 'D [μSv/h]'
         myRenderer  = QgsGraduatedSymbolRenderer()
@@ -254,7 +251,12 @@ def krogci(data,layers,date):
 
 def grid(data,layers,date):
     column_index=3
-
+    urlWithParams = 'type=xyz&url=https://a.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0&crs=EPSG3857'
+    rlayer = QgsRasterLayer(urlWithParams, 'OpenStreetMap', 'wms')  
+    if rlayer.isValid():
+        QgsProject.instance().addMapLayer(rlayer)
+    else:
+        print('invalid layer')
     layer_list = QgsLayerDefinition().loadLayerDefinitionLayers(THIS_FOLDER+'/Layers/Regije.qlr')
     QgsProject.instance().addMapLayers(layer_list)
     def creating_grid(name):
@@ -388,6 +390,12 @@ def squares(data, layers, date):
 
     #PRINTING STREET MAP
     #
+    rlWithParams = 'type=xyz&url=https://a.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0&crs=EPSG3857'
+    rlayer = QgsRasterLayer(urlWithParams, 'OpenStreetMap', 'wms')  
+    if rlayer.isValid():
+        QgsProject.instance().addMapLayer(rlayer)
+    else:
+        print('invalid layer')
     #FUNCTION FOR COLORING DOTS
     #
     def apply_graduated_symbology_points(layer,border,color1):
@@ -565,9 +573,11 @@ if ok and item:
         else:
             print('invalid layer')
 
+
 #
 #Save window
 #
+Zones_window()
 qid = QDialog()
 items = ("None", "Slovenia map", "Krško map", "Both")        
 item, ok = QInputDialog.getItem(qid, "Saving layers", "Save layer as:", items, 0, False)
@@ -633,7 +643,7 @@ if item=="Slovenia map":
     layoutItemPicture = QgsLayoutItemPicture(layout)
     layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
     layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
-    layoutItemPicture.setPicturePath("C:\IJS\Obdelava\Final\Kartiranje-radioaktivnosti\Layers\logo.jpg")
+    layoutItemPicture.setPicturePath(THIS_FOLDER+"\Layers\logo.jpg")
 
     dim_image_original = [1186, 360]
     new_dim = [i * 0.70 for i in dim_image_original]
@@ -718,7 +728,7 @@ if item=="Krško map":
     layoutItemPicture = QgsLayoutItemPicture(layout)
     layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
     layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
-    layoutItemPicture.setPicturePath("C:\IJS\Obdelava\Final\Kartiranje-radioaktivnosti\Layers\logo.jpg")
+    layoutItemPicture.setPicturePath(THIS_FOLDER+"\Layers\Logo.jpg")
 
     dim_image_original = [1186, 360]
     new_dim = [i * 0.70 for i in dim_image_original]
@@ -804,7 +814,7 @@ if item=="Both":
     layoutItemPicture = QgsLayoutItemPicture(layout)
     layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
     layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
-    layoutItemPicture.setPicturePath("C:\IJS\Obdelava\Final\Kartiranje-radioaktivnosti\Layers\logo.jpg")
+    layoutItemPicture.setPicturePath(THIS_FOLDER+"\Layers\Logo.jpg")
 
     dim_image_original = [1186, 360]
     new_dim = [i * 0.70 for i in dim_image_original]
@@ -871,7 +881,7 @@ if item=="Both":
     layoutItemPicture = QgsLayoutItemPicture(layout)
     layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
     layoutItemPicture.setMode(QgsLayoutItemPicture.FormatRaster)
-    layoutItemPicture.setPicturePath("C:\IJS\Obdelava\Final\Kartiranje-radioaktivnosti\Layers\logo.jpg")
+    layoutItemPicture.setPicturePath(THIS_FOLDER+"\Layers\Logo.jpg")
 
     dim_image_original = [1186, 360]
     new_dim = [i * 0.70 for i in dim_image_original]
