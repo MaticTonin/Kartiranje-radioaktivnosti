@@ -163,6 +163,13 @@ def dataSets(date,data,layers):
     inx.to_csv(created+"\XL "+date+".csv",sep=';')
     outfile.close()
     return created
+
+urlWithParams = 'type=xyz&url=https://a.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0&crs=EPSG3857'
+rlayer = QgsRasterLayer(urlWithParams, 'OpenStreetMap', 'wms')  
+if rlayer.isValid():
+    QgsProject.instance().addMapLayer(rlayer)
+else:
+    print('invalid layer')
     
 def Zones_window():
     qid = QDialog()
@@ -184,7 +191,7 @@ def Zones_window():
         QgsProject.instance().addMapLayers(layer_list)
 
 
-
+Zones_window()
 #Window for choosing which one  
 qid = QDialog()
 items = ("Circles", "Squares", "Polygons", "None")        
@@ -194,12 +201,6 @@ item, ok = QInputDialog.getItem(qid, "Showing data on map", "Show data as:", ite
 #
 def krogci(data,layers,date):
     column_index=3
-    urlWithParams = 'type=xyz&url=https://a.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0&crs=EPSG3857'
-    rlayer = QgsRasterLayer(urlWithParams, 'OpenStreetMap', 'wms')  
-    if rlayer.isValid():
-        QgsProject.instance().addMapLayer(rlayer)
-    else:
-        print('invalid layer')
     
     def apply_graduated_symbology(layer):
         target_field = 'D [μSv/h]'
@@ -253,13 +254,6 @@ def krogci(data,layers,date):
 
 def grid(data,layers,date):
     column_index=3
-
-    urlWithParams = 'type=xyz&url=https://a.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0&crs=EPSG3857'
-    rlayer = QgsRasterLayer(urlWithParams, 'OpenStreetMap', 'wms')  
-    if rlayer.isValid():
-        QgsProject.instance().addMapLayer(rlayer)
-    else:
-        print('invalid layer')
 
     layer_list = QgsLayerDefinition().loadLayerDefinitionLayers(THIS_FOLDER+'/Layers/Regije.qlr')
     QgsProject.instance().addMapLayers(layer_list)
@@ -393,14 +387,6 @@ def squares(data, layers, date):
     column_index=3
 
     #PRINTING STREET MAP
-    urlWithParams = 'type=xyz&url=https://a.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0&crs=EPSG3857'
-    rlayer = QgsRasterLayer(urlWithParams, 'OpenStreetMap', 'wms')
-
-
-    if rlayer.isValid():
-        QgsProject.instance().addMapLayer(rlayer)
-    else:
-        print('invalid layer')
     #
     #FUNCTION FOR COLORING DOTS
     #
@@ -578,7 +564,7 @@ if ok and item:
             QgsProject.instance().addMapLayer(rlayer)
         else:
             print('invalid layer')
-Zones_window()
+
 #
 #Save window
 #
