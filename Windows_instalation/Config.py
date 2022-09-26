@@ -4,7 +4,7 @@ def input_function():
     INPUT=input("Do you have all the python files installed in this folder (This folder+\python): (y/n)")
     if INPUT=="y" or INPUT=="Y":
         THIS_FOLDER = os.path.dirname(os.path.abspath("__file__"))
-        for i in ["Dots.bat", "Squares.bat", "Interactive.bat", "Grid.bat"]:
+        for i in ["Dots.bat", "Squares.bat", "Interactive.bat", "Grid.bat", "Live.bat"]:
             if os.path.exists(THIS_FOLDER+"\\"+i):
                 print("The file "+i+" does exist")
                 os.remove(THIS_FOLDER+"\\"+i)
@@ -19,11 +19,13 @@ def input_function():
                     file.write("qgis --nologo --project "+THIS_FOLDER+"\\Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"\\Programs\\Full_version-grid.PY")
                 if i=="Interactive.bat":
                     file.write("qgis --nologo --project "+THIS_FOLDER+"\\Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"\\Programs\\Interactive_version.PY")
+                if i=="Live.bat":
+                    file.write("qgis --nologo --project "+THIS_FOLDER+"\\Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"\\Programs\\Live_version.PY")
     elif INPUT=="n" or INPUT=="N":
         THIS_FOLDER=input("Enter the folder, were the python files are installed:")
         if THIS_FOLDER=="":
             THIS_FOLDER=os.path.dirname(os.path.abspath("__file__"))
-        for i in ["Dots.bat", "Squares.bat", "Interactive.bat", "Grid.bat"]:
+        for i in ["Dots.bat", "Squares.bat", "Interactive.bat", "Grid.bat", "Live.bat"]:
             if os.path.exists(THIS_FOLDER+"\\"+i):
                 os.remove(THIS_FOLDER+"\\"+i)
                 print("The file "+i+" does exist")
@@ -38,6 +40,8 @@ def input_function():
                     file.write("qgis --nologo --project "+THIS_FOLDER+"\\Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"\\Programs\\Full_version-grid.PY")
                 if i=="Interactive.bat":
                     file.write("qgis --nologo --project "+THIS_FOLDER+"\\Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"\\Programs\\Interactive_version.PY")
+                if i=="Live.bat":
+                    file.write("qgis --nologo --project "+THIS_FOLDER+"\\Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"\\Programs\\Live_version.PY")
     elif INPUT!="n" or INPUT!="y" or INPUT!="Y" or INPUT!="N":
         print("Invalid input, try again")
         input_function()
@@ -47,7 +51,7 @@ print("Welcome to instalation of Map of radioactivity. \n")
 INPUT=input("Do you have all the python files installed in this folder (This folder+\python): (y/n)")
 if INPUT=="y" or INPUT=="Y":
     THIS_FOLDER = os.path.dirname(os.path.abspath("__file__"))
-    for i in ["Dots.bat", "Squares.bat", "Interactive.bat", "Grid.bat"]:
+    for i in ["Dots.bat", "Squares.bat", "Interactive.bat", "Grid.bat", "Live.bat"]:
         if os.path.exists(THIS_FOLDER+"\\"+i):
             print("The file "+i+" does exist")
             os.remove(THIS_FOLDER+"\\"+i)
@@ -62,9 +66,11 @@ if INPUT=="y" or INPUT=="Y":
                file.write("qgis --nologo --project "+THIS_FOLDER+"\\Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"\\Programs\\Full_version-grid.PY")
             if i=="Interactive.bat":
                file.write("qgis --nologo --project "+THIS_FOLDER+"\\Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"\\Programs\\Interactive_version.PY")
+            if i=="Live.bat":
+               file.write("qgis --nologo --project "+THIS_FOLDER+"\\Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"\\Programs\\Live_version.PY")
 elif INPUT=="n" or INPUT=="N":
     THIS_FOLDER=input("Enter the folder, were the python files are installed:")
-    for i in ["Dots.bat", "Squares.bat", "Interactive.bat", "Grid.bat"]:
+    for i in ["Dots.bat", "Squares.bat", "Interactive.bat", "Grid.bat", "Live.bat"]:
         if os.path.exists(THIS_FOLDER+"\\"+i):
             os.remove(THIS_FOLDER+"\\"+i)
             print("The file "+i+" does exist")
@@ -79,6 +85,8 @@ elif INPUT=="n" or INPUT=="N":
                file.write("qgis --nologo --project "+THIS_FOLDER+"\\Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"\\Programs\\Full_version-grid.PY")
             if i=="Interactive.bat":
                file.write("qgis --nologo --project "+THIS_FOLDER+"\\Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"\\Programs\\Interactive_version.PY")
+            if i=="Live.bat":
+               file.write("qgis --nologo --project "+THIS_FOLDER+"\\Map_of_radioactivity-Slovenia.qgz --code "+ THIS_FOLDER+"\\Programs\\Live_version.PY")
 
 elif INPUT!="n" or INPUT!="y" or INPUT!="Y" or INPUT!="N":
     print("Invalid input, try again")
