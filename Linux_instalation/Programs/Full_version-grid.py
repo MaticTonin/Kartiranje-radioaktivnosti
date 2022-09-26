@@ -319,7 +319,7 @@ rmvLyr("Regije")
 from qgis.PyQt import QtGui
 
 #layers = QgsProject.instance().mapLayersByName('MrežaXL')
-layers = QgsProject.instance().mapLayersByName('Radioactivity Dose')
+layers = QgsProject.instance().mapLayersByName("Radioactivity dose")
 layer = layers[0]
 project = QgsProject.instance()
 manager = project.layoutManager()
