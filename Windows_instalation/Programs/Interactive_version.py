@@ -376,7 +376,7 @@ def grid(data,layers,date):
             layer.setMaximumScale(10.0)
         if file[0:1]=="L":
             layer.setMinimumScale(400000.0)
-            layer.setMaximumScale(200000.0)
+            layer.setMaximumScale(25000.0)
         if file[0:1]=="XL":
             layer.setMinimumScale(11000000.0)
             layer.setMaximumScale(400000.0)
@@ -384,13 +384,14 @@ def grid(data,layers,date):
         apply_graduated_symbology(layer,data,layers,date)
     Creating_layer("XL "+date+".csv",data,layers,date)    
     Creating_layer("L "+date+".csv",data,layers,date)
+    Creating_layer_dots("XS "+date+".csv",data,layers,date)
     rmvLyr("Regije")
 def squares(data, layers, date):
     column_index=3
 
     #PRINTING STREET MAP
     #
-    rlWithParams = 'type=xyz&url=https://a.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0&crs=EPSG3857'
+    urlWithParams = 'type=xyz&url=https://a.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0&crs=EPSG3857'
     rlayer = QgsRasterLayer(urlWithParams, 'OpenStreetMap', 'wms')  
     if rlayer.isValid():
         QgsProject.instance().addMapLayer(rlayer)

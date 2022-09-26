@@ -311,7 +311,7 @@ if not os.path.exists(layers_save):
     os.makedirs(layers_save)        
 Creating_layer_dots("XS ",date)
 #Creating_layer("S.csv")
-#Creating_layer("L ",date)
+Creating_layer("L ",date)
 Creating_layer("XL ",date)
 rmvLyr("Regije")
 
