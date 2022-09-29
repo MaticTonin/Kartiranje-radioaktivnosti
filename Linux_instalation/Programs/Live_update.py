@@ -216,7 +216,10 @@ def Reseting(date):
             layer.loadNamedStyle(THIS_FOLDER+"/Layers/XL.qml")
         ramp = QgsCptCityColorRamp("grass/gyr","",False,True)
         myRenderer.updateColorRamp(ramp)
-        layer.setName("Radioactivity Dose")
+        if layer.name()=="XL":
+            layer.setName("Radioactivity dose")
+        else: 
+            layer.setName("Radioactivity Dose")
         #layer.setRenderer(myRenderer)
         #current_node = iface.layerTreeView().currentNode()
         #QgsLayerDefinition().exportLayerDefinition(THIS_FOLDER+"/Created_layers/Points "+layer.name()+" "+date+".qlr", [current_node])    
@@ -325,7 +328,7 @@ else:
 Reseting(date)
 from qgis.PyQt import QtGui
 #layers = QgsProject.instance().mapLayersByName('MrežaXL')
-layers = QgsProject.instance().mapLayersByName("Radioactivity Dose")
+layers = QgsProject.instance().mapLayersByName("Radioactivity dose")
 layer = layers[0]
 project = QgsProject.instance()
 manager = project.layoutManager()
@@ -400,7 +403,7 @@ def test():
     date_2 = now_2.strftime("%d-%m-%Y_%H-%M-%S")
     from qgis.PyQt import QtGui
     #layers = QgsProject.instance().mapLayersByName('MrežaXL')
-    layers = QgsProject.instance().mapLayersByName("Radioactivity Dose")
+    layers = QgsProject.instance().mapLayersByName("Radioactivity dose")
     layer = layers[0]
     project = QgsProject.instance()
     manager = project.layoutManager()

@@ -92,10 +92,6 @@ def dataSets(date,data):
     df=pd.DataFrame(info[1:],columns =info[0])
     df.rename(columns = {"D [ÎĽSv/h]":r"D [μSv/h]"}, inplace = True)
 
-    """idx=df.groupby(['N [Decimal degrees]','E [Decimal degrees]'])[r'D [μSv/h]'].transform(max) == df[r'D [μSv/h]']
-    if os.path.exists(THIS_FOLDER + THIS_FOLDER+'/Podatki.csv'):
-    os.remove(THIS_FOLDER+'/Podatki.csv')
-    df[idx].to_csv(THIS_FOLDER+'/Podatki.csv',sep=';')"""
     #Small data
     inx=df.sort_values('D [μSv/h]').groupby(['N [Decimal degrees]','E [Decimal degrees]']).tail(1)
     if os.path.exists(created+"/XS "+date+".csv"):

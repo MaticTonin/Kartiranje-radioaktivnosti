@@ -81,11 +81,6 @@ def dataSets(date,data,layers):
             fo.close()
             os.remove(data+str(filename))
     dir_list=os.listdir(layers)
-    for i in dir_list:
-        #print(os.path.splitext(i)[0][:6])
-        if  os.path.splitext(i)[0][:6]=="output":
-            os.remove(layers+i)
-            #print("Done with:" +str(i))"""
     created = data+"Created\\" 
     if not os.path.exists(created):
         os.makedirs(created)        
@@ -492,28 +487,28 @@ def squares(data, layers, date):
                 "DISTANCE": 0.0005,
                 "SEGMENTS": 4,
                 "END_CAP_STYLE": 2,
-                "OUTPUT": layers+"output"+layer.name()+".shp"}
+                "OUTPUT": layers+"output"+layer.name()+" "+date+".shp"}
         if layer.name()=="S ":
             params = {
                 "INPUT": layer,
                 "DISTANCE": 0.005,
                 "SEGMENTS": 4,
                 "END_CAP_STYLE": 2,
-                "OUTPUT": layers+"output"+layer.name()+".shp"}
+                "OUTPUT": layers+"output"+layer.name()+" "+date+".shp"}
         if layer.name()=="L ":
             params = {
                 "INPUT": layer,
                 "DISTANCE": 0.005,
                 "SEGMENTS": 4,
                 "END_CAP_STYLE": 2,
-                "OUTPUT": layers+"output"+layer.name()+".shp"}
+                "OUTPUT": layers+"output"+layer.name()+" "+date+".shp"}
         if layer.name()=="XL":
             params = {
                 "INPUT": layer,
                 "DISTANCE": 0.05,
                 "SEGMENTS": 4,
                 "END_CAP_STYLE": 2,
-                "OUTPUT": layers+"output"+layer.name()+".shp"}
+                "OUTPUT": layers+"output"+layer.name()+" "+date+".shp"}
         out1=processing.run("native:buffer", params)
         grid = QgsVectorLayer(out1['OUTPUT'], "Buffed"+layer.name(), 'ogr')
         QgsProject().instance().addMapLayer(grid)
@@ -593,7 +588,7 @@ if ok and item:
 #
 Zones_window()
 qid = QDialog()
-items = ("None", "Slovenia map", "Krško map", "Both")        
+items = ("None", "Slovenia map", "Krško map")        
 item, ok = QInputDialog.getItem(qid, "Saving layers", "Save layer as:", items, 0, False)
 save = saving_folder+"Output\\" 
 if not os.path.exists(save):
@@ -684,18 +679,18 @@ if item=="Slovenia map":
     layout.addLayoutItem(layoutItemPicture)
     qid = QDialog()
     items = ("No", "Pdf", "png", "Both")        
-    item, ok = QInputDialog.getItem(qid, "Prikaz", "Export layouts as:", items, 0, False)
-    if item =="Pdf":
+    item1, ok = QInputDialog.getItem(qid, "Prikaz", "Export layouts as:", items, 0, False)
+    if item1 =="Pdf":
         print("Selected Pdf")
         layout = manager.layoutByName("Slovenia")
         exporter = QgsLayoutExporter(layout)
         exporter.exportToPdf(save+"Slovenia"+date+".pdf", QgsLayoutExporter.PdfExportSettings())
-    if item =="png":
+    if item1 =="png":
         print("Selected png")
         layout = manager.layoutByName("Slovenia")
         exporter = QgsLayoutExporter(layout)
         exporter.exportToImage(save+"Slovenia"+date+".png", QgsLayoutExporter.ImageExportSettings())
-    if item =="Both":
+    if item1 =="Both":
         print("Selected Both")
         layout = manager.layoutByName("Slovenia")
         exporter = QgsLayoutExporter(layout)
@@ -787,18 +782,18 @@ if item=="Krško map":
     layout.addLayoutItem(layoutItemPicture)
     qid = QDialog()
     items = ("No", "Pdf", "png", "Both")        
-    item, ok = QInputDialog.getItem(qid, "Prikaz", "Export layouts as:", items, 0, False)
-    if item =="Pdf":
+    item1, ok = QInputDialog.getItem(qid, "Prikaz", "Export layouts as:", items, 0, False)
+    if item1 =="Pdf":
         print("Selected Pdf")
         layout = manager.layoutByName("Krško")
         exporter = QgsLayoutExporter(layout)
         exporter.exportToPdf(save+"Krško"+date+".pdf", QgsLayoutExporter.PdfExportSettings())
-    if item =="png":
+    if item1 =="png":
         print("Selected png")
         layout = manager.layoutByName("Krško")
         exporter = QgsLayoutExporter(layout)
         exporter.exportToImage(save+"Krško"+date+".png", QgsLayoutExporter.ImageExportSettings())
-    if item =="Both":
+    if item1 =="Both":
         print("Selected Both")
         layout = manager.layoutByName("Krško")
         exporter = QgsLayoutExporter(layout)
@@ -976,8 +971,8 @@ if item=="Both":
     layout.addLayoutItem(layoutItemPicture)
     qid = QDialog()
     items = ("No", "Pdf", "png", "Both")        
-    item, ok = QInputDialog.getItem(qid, "Prikaz", "Export layouts as:", items, 0, False)
-    if item =="Pdf":
+    item1, ok = QInputDialog.getItem(qid, "Prikaz", "Export layouts as:", items, 0, False)
+    if item1 =="Pdf":
         print("Selected Pdf")
         layout = manager.layoutByName("Krško")
         exporter = QgsLayoutExporter(layout)
@@ -985,7 +980,7 @@ if item=="Both":
         layout = manager.layoutByName("Slovenia")
         exporter = QgsLayoutExporter(layout)
         exporter.exportToPdf(save+"Slovenia"+date+".pdf", QgsLayoutExporter.PdfExportSettings())
-    if item =="png":
+    if item1 =="png":
         print("Selected png")
         layout = manager.layoutByName("Krško")
         exporter = QgsLayoutExporter(layout)
@@ -993,7 +988,7 @@ if item=="Both":
         layout = manager.layoutByName("Slovenia")
         exporter = QgsLayoutExporter(layout)
         exporter.exportToImage(save+"Slovenia"+date+".png", QgsLayoutExporter.ImageExportSettings())
-    if item =="Both":
+    if item1 =="Both":
         print("Selected Both")
         layout = manager.layoutByName("Krško")
         exporter = QgsLayoutExporter(layout)

@@ -81,11 +81,6 @@ def dataSets(date,data,layers):
             fo.close()
             os.remove(data+str(filename))
     dir_list=os.listdir(layers)
-    for i in dir_list:
-        #print(os.path.splitext(i)[0][:6])
-        if  os.path.splitext(i)[0][:6]=="output":
-            os.remove(layers+i)
-            #print("Done with:" +str(i))"""
     created = data+"Created/" 
     if not os.path.exists(created):
         os.makedirs(created)        
@@ -496,28 +491,28 @@ def squares(data, layers, date):
                 "DISTANCE": 0.0005,
                 "SEGMENTS": 4,
                 "END_CAP_STYLE": 2,
-                "OUTPUT": layers+"output"+layer.name()+".shp"}
+                "OUTPUT": layers+"output"+layer.name()+" "+date+".shp"}
         if layer.name()=="S ":
             params = {
                 "INPUT": layer,
                 "DISTANCE": 0.005,
                 "SEGMENTS": 4,
                 "END_CAP_STYLE": 2,
-                "OUTPUT": layers+"output"+layer.name()+".shp"}
+                "OUTPUT": layers+"output"+layer.name()+" "+date+".shp"}
         if layer.name()=="L ":
             params = {
                 "INPUT": layer,
                 "DISTANCE": 0.005,
                 "SEGMENTS": 4,
                 "END_CAP_STYLE": 2,
-                "OUTPUT": layers+"output"+layer.name()+".shp"}
+                "OUTPUT": layers+"output"+layer.name()+" "+date+".shp"}
         if layer.name()=="XL":
             params = {
                 "INPUT": layer,
                 "DISTANCE": 0.05,
                 "SEGMENTS": 4,
                 "END_CAP_STYLE": 2,
-                "OUTPUT": layers+"output"+layer.name()+".shp"}
+                "OUTPUT": layers+"output"+layer.name()+" "+date+".shp"}
         out1=processing.run("native:buffer", params)
         grid = QgsVectorLayer(out1['OUTPUT'], "Buffed"+layer.name(), 'ogr')
         QgsProject().instance().addMapLayer(grid)
@@ -595,7 +590,7 @@ Zones_window()
 #Save window
 #
 qid = QDialog()
-items = ("None", "Slovenia map", "Krško map", "Both")        
+items = ("None", "Slovenia map", "Krško map")        
 item, ok = QInputDialog.getItem(qid, "Saving layers", "Save layer as:", items, 0, False)
 save = saving_folder+"Output/" 
 if not os.path.exists(save):
