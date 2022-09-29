@@ -329,7 +329,7 @@ def grid(data,layers,date):
                 "POINTS": file,
                 "WEIGHT": 'D [μSv/h]',
                 "FIELD": 'D [μSv/h]',
-                "OUTPUT": 'Mreža'+file[0:2]+" "+date}
+                "OUTPUT": layers_save+'Mreža'+file[0:2]+" "+date}
         out1=processing.run('qgis:countpointsinpolygon', params)
         grid = QgsVectorLayer(out1['OUTPUT'], layers_save+"Mreža"+file[0:2]+" "+date, 'ogr')
         for lyr in ['Grid'+str(file)+" "+str(date),str(file)]:
