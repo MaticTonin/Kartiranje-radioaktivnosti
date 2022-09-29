@@ -194,7 +194,7 @@ def Zones_window():
 
 #Window for choosing which one  
 qid = QDialog()
-items = ("Circles", "Squares", "Polygons", "None")        
+items = ("Circles", "Squares", "Polygons", "Polygons-faster", "None")        
 item, ok = QInputDialog.getItem(qid, "Showing data on map", "Show data as:", items, 0, False)
 #
 #Layers functions
@@ -233,7 +233,10 @@ def krogci(data,layers,date):
         layer.setOpacity(0.75)
         current_node = iface.layerTreeView().currentNode()
         QgsLayerDefinition().exportLayerDefinition(layers_save+"Grid "+layer.name()+" "+date+".qlr", [current_node])
-        layer.setName("Radioactivity dose")      
+        if layer.name()=="XL":
+            layer.setName("Radioactivity Dose")
+        else: 
+            layer.setName("Radioactivity dose")      
 
     def Creating_layer(file):
         uri="file:///"+data+file+"?type=regexp&delimiter=;&maxFields=10000&detectTypes=yes&decimalPoint=,&xField=E%20[Decimal%20degrees]&yField=N%20[Decimal%20degrees]&crs=EPSG:4326&spatialIndex=no&subsetIndex=no&watchFile=no"
@@ -375,7 +378,10 @@ def grid(data,layers,date):
         layer.setFeatureBlendMode(QPainter.CompositionMode_ColorDodge) 
         current_node = iface.layerTreeView().currentNode()
         QgsLayerDefinition().exportLayerDefinition(layers_save+"Grid "+layer.name()+" "+date+".qlr", [current_node])
-        layer.setName("Radioactivity dose")   
+        if layer.name()=="XL":
+            layer.setName("Radioactivity Dose")
+        else: 
+            layer.setName("Radioactivity dose")  
 
     def Creating_layer_dots(file,data,layers,date):
         uri="file:///"+data+file+"?type=regexp&delimiter=;&maxFields=10000&detectTypes=yes&decimalPoint=,&xField=E%20[Decimal%20degrees]&yField=N%20[Decimal%20degrees]&crs=EPSG:4326&spatialIndex=no&subsetIndex=no&watchFile=no"
@@ -462,7 +468,10 @@ def squares(data, layers, date):
         layer.setOpacity(0.75)
         current_node = iface.layerTreeView().currentNode()
         QgsLayerDefinition().exportLayerDefinition(layers_save+"Grid "+layer.name()+" "+date+".qlr", [current_node])
-        layer.setName("Radioactivity dose")   
+        if layer.name()=="XL":
+            layer.setName("Radioactivity Dose")
+        else: 
+            layer.setName("Radioactivity dose")  
     #layer.setBlendMode(QPainter.CompositionMode_Normal)
     #layer.setFeatureBlendMode(QPainter.CompositionMode_Normal)
     #
@@ -557,6 +566,93 @@ def squares(data, layers, date):
     Creating_layer("XL "+date+".csv")
     Creating_layer("XS "+date+".csv")
     Creating_layer("L "+date+".csv")
+    
+def Reseting(data,layer,date):
+    column_index=3
+    urlWithParams = 'type=xyz&url=https://a.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0&crs=EPSG3857'
+    rlayer = QgsRasterLayer(urlWithParams, 'OpenStreetMap', 'wms')
+    if rlayer.isValid():
+        QgsProject.instance().addMapLayer(rlayer)
+    else:
+        print('invalid layer')  
+    def apply_graduated_symbology_points(layer,border,color1,date):
+        target_field = 'D [μSv/h]'
+        def Group(index, min, max,layer):
+            symbol = QgsSymbol.defaultSymbol(layer.geometryType())
+            get_styles = QgsStyle.defaultStyle()
+            symbol.setColor(QColor(str(color1[index])))
+            if layer.name()=="XL":
+                symbol.setSize(0.1)
+                symbol.setSizeUnit(1)
+            if layer.name()=="L":
+                symbol.setSize(0.01)
+                symbol.setSizeUnit(1)
+            if layer.name()=="XS":
+                symbol.setSize(0.001)
+                symbol.setSizeUnit(1)
+            myRange = QgsRendererRange(min, max, symbol,str(index)+", "+str(min)+"-"+str(max)+" μSv/h")
+            return myRange
+        
+        myRangeList = []
+        for i in range(0,column_index):
+            myRange=Group(i,border[i], border[i+1],layer)
+            myRangeList.append(myRange) 
+
+        myRenderer = QgsGraduatedSymbolRenderer(target_field, myRangeList)  
+        myRenderer.setMode(QgsGraduatedSymbolRenderer.Custom)
+        #myRenderer.setSymbolSizes(5,5)
+        if layer.name()=="XS":
+            layer.loadNamedStyle(THIS_FOLDER+"/Layers/S.qml")
+        if layer.name()=="L":
+            layer.loadNamedStyle(THIS_FOLDER+"/Layers/L.qml")
+        if layer.name()=="XL":
+            layer.loadNamedStyle(THIS_FOLDER+"/Layers/XL.qml")
+        ramp = QgsCptCityColorRamp("grass/gyr","",False,True)
+        myRenderer.updateColorRamp(ramp)
+        #layer.setRenderer(myRenderer)
+        current_node = iface.layerTreeView().currentNode()
+        QgsLayerDefinition().exportLayerDefinition(THIS_FOLDER+"/Created_layers/Grid "+layer.name()+" "+date+".qlr", [current_node])
+        if layer.name()=="XL":
+            layer.setName("Radioactivity Dose")
+        else: 
+            layer.setName("Radioactivity dose")
+
+    def Creating_map(layer,date):
+        #Getting the data max in min for labels
+        target_field = 'D [μSv/h]'
+    #Creating colored groups
+        column_index=5
+        border=[0,0.5,100,1000]
+        color1=mcp.gen_color(cmap="autumn",n=column_index)
+        apply_graduated_symbology_points(layer,border,color1,date)
+        
+    def Creating_layer(name,file,date):
+        uri="file:///"+THIS_FOLDER+"/Data/Created/"+file+"?type=regexp&delimiter=;&maxFields=10000&detectTypes=yes&decimalPoint=,&xField=E%20[Decimal%20degrees]&yField=N%20[Decimal%20degrees]&crs=EPSG:4326&spatialIndex=no&subsetIndex=no&watchFile=no"
+        layer = QgsVectorLayer(uri, name, 'delimitedtext')
+        layer.setScaleBasedVisibility(True)
+        if layer.name()=="XS":
+            layer.setMinimumScale(25000.0)
+            layer.setMaximumScale(20.0)
+        #if layer.name()=="S":
+            #layer.setMinimumScale(25000.0)
+            #layer.setMaximumScale(10000.0)
+        if layer.name()=="L":
+            layer.setMinimumScale(200000.0)
+            layer.setMaximumScale(25000.0)
+        if layer.name()=="XL":
+            layer.setMinimumScale(11000000.0)
+            layer.setMaximumScale(200000.0)
+        layer= QgsProject.instance().addMapLayer(layer)
+        layer.setAutoRefreshEnabled(True)
+        # Set seconds (5 seconds)
+        layer.setAutoRefreshInterval(2000)
+        layer.setAutoRefreshEnabled(True)
+        Creating_map(layer,date)
+    #Creating_layer("S.csv")
+    Creating_layer("XL","XL "+date+".csv",date)
+    Creating_layer("L","L "+date+".csv",date)
+    Creating_layer("XS","XS "+date+".csv",date)
+    
 from datetime import datetime
 now = datetime.now()
 date = str(now.strftime("%d-%m-%Y_%H-%M-%S"))
@@ -576,6 +672,11 @@ if ok and item:
         print("Selected: Polygons")
         created=dataSets(date,data_folder,created_layers)
         grid(created,created_layers,date)
+        #Window for choosing the layer of population
+    if item=="Polygons-faster":
+        print("Selected: Polygons-faster")
+        created=dataSets(date,data_folder,created_layers)
+        Reseting(created,created_layers,date)
         #Window for choosing the layer of population
     if item=="None":
         print("Selected: None")
@@ -599,7 +700,7 @@ if item=="Slovenia map":
     print("Selected: Slovenia map")
     from qgis.PyQt import QtGui
     #layers = QgsProject.instance().mapLayersByName('MrežaXL')
-    layers = QgsProject.instance().mapLayersByName('Radioactivity dose')
+    layers = QgsProject.instance().mapLayersByName('Radioactivity Dose')
     layer = layers[0]
     project = QgsProject.instance()
     manager = project.layoutManager()
