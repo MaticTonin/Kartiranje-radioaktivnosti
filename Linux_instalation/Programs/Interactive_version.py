@@ -233,7 +233,7 @@ def krogci(data,layers,date):
         layer.setOpacity(0.75)
         current_node = iface.layerTreeView().currentNode()
         QgsLayerDefinition().exportLayerDefinition(layers_save+"Grid "+layer.name()+" "+date+".qlr", [current_node])
-        if layer.name()=="XL":
+        if layer.name()[0:2]=="XL":
             layer.setName("Radioactivity Dose")
         else: 
             layer.setName("Radioactivity dose")      
@@ -378,7 +378,7 @@ def grid(data,layers,date):
         layer.setFeatureBlendMode(QPainter.CompositionMode_ColorDodge) 
         current_node = iface.layerTreeView().currentNode()
         QgsLayerDefinition().exportLayerDefinition(layers_save+"Grid "+layer.name()+" "+date+".qlr", [current_node])
-        if layer.name()=="XL":
+        if layer.name()=="MrežaXL":
             layer.setName("Radioactivity Dose")
         else: 
             layer.setName("Radioactivity dose")  
@@ -468,7 +468,7 @@ def squares(data, layers, date):
         layer.setOpacity(0.75)
         current_node = iface.layerTreeView().currentNode()
         QgsLayerDefinition().exportLayerDefinition(layers_save+"Grid "+layer.name()+" "+date+".qlr", [current_node])
-        if layer.name()=="XL":
+        if layer.name()=="BuffedXL":
             layer.setName("Radioactivity Dose")
         else: 
             layer.setName("Radioactivity dose")  
@@ -756,7 +756,7 @@ if item=="Slovenia map":
         legend.attemptMove(QgsLayoutPoint(225,115, QgsUnitTypes.LayoutMillimeters))
     if len(QgsProject.instance().mapLayersByName('Population 100m')) == 0 and len(QgsProject.instance().mapLayersByName('Population 500m')) == 0:
         layout.addLayoutItem(legend)
-        legend.attemptMove(QgsLayoutPoint(248, 8, QgsUnitTypes.LayoutMillimeters))
+        legend.attemptMove(QgsLayoutPoint(225, 145, QgsUnitTypes.LayoutMillimeters))
 
 
     scalebar = QgsLayoutItemScaleBar(layout)
@@ -841,27 +841,7 @@ if item=="Krško map":
     layerTree.addLayer(layer)
     legend.model().setRootGroup(layerTree)
     legend.attemptMove(QgsLayoutPoint(248, 8, QgsUnitTypes.LayoutMillimeters))
-
-    if len(QgsProject.instance().mapLayersByName('Population 500m')) != 0:
-        map_layers = QgsProject.instance().mapLayersByName('Population 500m')
-        map_layer = map_layers[0]
-        legend = QgsLayoutItemLegend(layout)
-        layerTree.addLayer(map_layer)
-        legend.model().setRootGroup(layerTree)
-        layout.addLayoutItem(legend)
-        legend.attemptMove(QgsLayoutPoint(248, 8, QgsUnitTypes.LayoutMillimeters))
-    if len(QgsProject.instance().mapLayersByName('Population 100m')) != 0:
-        map_layers = QgsProject.instance().mapLayersByName('Population 100m')
-        map_layer = map_layers[0]
-        legend = QgsLayoutItemLegend(layout)
-        layerTree.addLayer(map_layer)
-        legend.model().setRootGroup(layerTree)
-        layout.addLayoutItem(legend)
-        legend.attemptMove(QgsLayoutPoint(248, 8, QgsUnitTypes.LayoutMillimeters))
-    if len(QgsProject.instance().mapLayersByName('Population 100m')) == 0 and len(QgsProject.instance().mapLayersByName('Population 500m')) == 0:
-        layout.addLayoutItem(legend)
-        legend.attemptMove(QgsLayoutPoint(248, 8, QgsUnitTypes.LayoutMillimeters))
-
+    
     scalebar = QgsLayoutItemScaleBar(layout)
     scalebar.setStyle('Line Ticks Up')
     scalebar.setUnits(QgsUnitTypes.DistanceKilometers)
@@ -873,7 +853,27 @@ if item=="Krško map":
     scalebar.setFont(QFont('Arial', 14))
     scalebar.update()
     layout.addLayoutItem(scalebar)
-    scalebar.attemptMove(QgsLayoutPoint(248, 85, QgsUnitTypes.LayoutMillimeters))
+    scalebar.attemptMove(QgsLayoutPoint(242, 85, QgsUnitTypes.LayoutMillimeters))
+    if len(QgsProject.instance().mapLayersByName('Population 500m')) != 0:
+        map_layers = QgsProject.instance().mapLayersByName('Population 500m')
+        map_layer = map_layers[0]
+        legend = QgsLayoutItemLegend(layout)
+        layerTree.addLayer(map_layer)
+        legend.model().setRootGroup(layerTree)
+        layout.addLayoutItem(legend)
+        legend.attemptMove(QgsLayoutPoint(242, 8, QgsUnitTypes.LayoutMillimeters))
+    if len(QgsProject.instance().mapLayersByName('Population 100m')) != 0:
+        map_layers = QgsProject.instance().mapLayersByName('Population 100m')
+        map_layer = map_layers[0]
+        legend = QgsLayoutItemLegend(layout)
+        layerTree.addLayer(map_layer)
+        legend.model().setRootGroup(layerTree)
+        layout.addLayoutItem(legend)
+        legend.attemptMove(QgsLayoutPoint(242, 8, QgsUnitTypes.LayoutMillimeters))
+    if len(QgsProject.instance().mapLayersByName('Population 100m')) == 0 and len(QgsProject.instance().mapLayersByName('Population 500m')) == 0:
+        layout.addLayoutItem(legend)
+        legend.attemptMove(QgsLayoutPoint(242, 8, QgsUnitTypes.LayoutMillimeters))
+        scalebar.attemptMove(QgsLayoutPoint(242, 43, QgsUnitTypes.LayoutMillimeters))
     layoutItemPicture = QgsLayoutItemPicture(layout)
     layoutItemPicture.setResizeMode(QgsLayoutItemPicture.Zoom)
     layoutItemPicture.setPicturePath(THIS_FOLDER+"/Layers/Logo.jpg")
