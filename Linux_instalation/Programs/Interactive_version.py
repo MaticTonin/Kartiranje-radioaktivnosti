@@ -378,10 +378,11 @@ def grid(data,layers,date):
         layer.setFeatureBlendMode(QPainter.CompositionMode_ColorDodge) 
         current_node = iface.layerTreeView().currentNode()
         QgsLayerDefinition().exportLayerDefinition(layers_save+"Grid "+layer.name()+" "+date+".qlr", [current_node])
-        if layer.name()=="MrežaXL":
+        print(layer.name()[0:6])
+        if layer.name()[0:7]=="MrežaXL":
             layer.setName("Radioactivity Dose")
         else: 
-            layer.setName("Radioactivity dose")  
+            layer.setName("Radioactivity dose")
 
     def Creating_layer_dots(file,data,layers,date):
         uri="file:///"+data+file+"?type=regexp&delimiter=;&maxFields=10000&detectTypes=yes&decimalPoint=,&xField=E%20[Decimal%20degrees]&yField=N%20[Decimal%20degrees]&crs=EPSG:4326&spatialIndex=no&subsetIndex=no&watchFile=no"

@@ -375,7 +375,7 @@ def grid(data,layers,date):
         layer.setFeatureBlendMode(QPainter.CompositionMode_ColorDodge)
         current_node = iface.layerTreeView().currentNode()
         QgsLayerDefinition().exportLayerDefinition(layers_save+"Grid "+layer.name()+" "+date+".qlr", [current_node])
-        if layer.name()=="MrežaXL":
+        if layer.name()[0:7]=="MrežaXL":
             layer.setName("Radioactivity Dose")
         else: 
             layer.setName("Radioactivity dose")
